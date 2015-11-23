@@ -85,6 +85,16 @@ public class World{
 	return e;
     }
 
+    public EqList<Creature> getCreaturesRoom(Room r){
+	EqList<Creature> e = new EqList<Creature>();
+	for (int i = 0; i<creatures.size(); i++){
+	    if (creatures.getNth(i).getLocation().equals(r)){
+		e.addElement(creatures.getNth(i));
+	    }
+	}
+	return e;
+    }
+
     @Override
     public String toString(){
 	ErrorControl.error();
