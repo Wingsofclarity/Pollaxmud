@@ -3,6 +3,7 @@ public abstract class NPC extends Creature{
     NPC(String name){
 	super(name);
     }
+    
     public void aiStep(){
 	Math.random();
     }

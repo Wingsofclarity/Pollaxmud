@@ -14,9 +14,15 @@ public class Course{
 	this.hp = hp;
     }
 
+    public boolean equals(Object o){
+	assert(o instance of Course);
+	Course c = (Course) o;
+	return id.equals(c.id);
+    }
+
     private class Question{
 	String question;
 	EqList<String> answers;
 	int right;
-    }    
+    }
 }

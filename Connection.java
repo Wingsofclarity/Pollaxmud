@@ -34,7 +34,9 @@ public class Connection{
 	return list;
     }
 
-    public boolean equals(Connection con){
+    public boolean equals(Object o){
+	assert(o instanceof Connection);
+	Connection c = (Connection) o;
 	return getRooms().equals(con.getRooms());
     }
 
