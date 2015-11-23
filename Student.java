@@ -3,7 +3,11 @@ public class Student extends NPC{
     Course currentC;
 
     Student(){
-	this("Studentguy",new Course("whatever"), new Course("whatever2"));
+	this("Studentguy");
+    }
+
+    Student(String name){
+	this(name ,new Course("whatever"), new Course("whatever2"));
     }
     
     Student(String name, Course completed, Course current){
@@ -11,6 +15,9 @@ public class Student extends NPC{
 	assert(!completed.equals(current));
 	this.completedC=completed;
 	this.currentC=current;
+    }
 
+    public String toString(){
+	return "Student: "+super.toString();
     }
 }

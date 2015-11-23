@@ -24,9 +24,10 @@ public class World{
 
 	connections = new EqList<Connection>();
 	connections.addElement(new Connection(getRoom("Room 1"), getRoom("Room 2")));
+	System.out.println(getConnectedRooms(rooms.head()));
 
 	creatures = new EqList<Creature>();
-	creatures.addElement(new Creature("Bertil"));
+	creatures.addElement(new Student("Bertil"));
 
 	courses = new EqList<Course>();
 	courses.addElement(new Course("Potatis-kursen"));
@@ -60,6 +61,17 @@ public class World{
     
     public EqList<Room> getRooms(){
 	return rooms;
+    }
+
+    public EqList<Room> getConnectedRooms(Room r){
+	EqList<Room> e = new EqList<Room>();
+	for (int i = 0; i<connections.size(); i++){
+	    Room to = connections.getNth(i).connect(r);
+	    if (to!=null){
+		e.addElement(to);
+	    }
+	}
+	return e;
     }
 
     @Override

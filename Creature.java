@@ -26,6 +26,10 @@ public class Creature{
 	return location.toString();
     }
 
+    public Room getLocation(){
+	return location;
+    }
+
     @Override
     public boolean equals(Object o){
 	assert(o instanceof Creature);
@@ -56,7 +60,12 @@ public class Creature{
 	return -1;
     }
 
+    /*
     public void interact(Creature c){
 	ErrorControl.error();
+	}*/
+
+    public void chat(){
+	System.out.println("I'm "+this.toString());
     }
 }

@@ -7,4 +7,8 @@ public class Teacher extends NPC{
     Teacher(String name){
 	super(name);
     }
+
+    public String toString(){
+	return "Teacher: "+super.toString();
+    }
 }

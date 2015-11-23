@@ -504,3 +504,235 @@ To https://github.com/Wingsofclarity/Pollaxmud.git
 bash-3.2$ make comop
 make: *** No rule to make target `comop'.  Stop.
 bash-3.2$ make comp
+Course.java:18: error: ')' expected
+	assert(o instance of Course);
+	                 ^
+Course.java:18: error: ';' expected
+	assert(o instance of Course);
+	                           ^
+Course.java:24: error: not a statement
+	questions.head().run;
+	                ^
+3 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:24: error: not a statement
+	questions.head().run;
+	                ^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Connection.java:40: error: cannot find symbol
+	return getRooms().equals(con.getRooms());
+	                         ^
+  symbol:   variable con
+  location: class Connection
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:35: error: missing return statement
+	}
+	^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+bash-3.2$ git commit -a -m "Question run"
+[master 851608f] Question run
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+bash-3.2$ ls
+#*shell*#		Course$Question.class	List$Node.class		Sphinx.java
+#Player.java#		Course.class		List.class		Sphinx.java~
+*shell*			Course.java		List.java		Student.class
+Book.class		Creature.class		NPC.class		Student.java
+Book.java		Creature.java		NPC.java		Teacher.class
+Book.java~		EqList.class		Player.class		Teacher.java
+Connection$Access.class	EqList.java		Player.java		Util.java
+Connection.class	ErrorControl.class	Pollaxmud.class		World.class
+Connection.java		ErrorControl.java	Pollaxmud.java		World.java
+Control.class		Item.class		Room.class		makefile
+Control.java		Item.java		Room.java		plan
+bash-3.2$ git add .
+bash-3.2$ git commit -a -m "Added book"
+[master 0599105] Added book
+ 5 files changed, 530 insertions(+)
+ create mode 100644 *shell*
+ create mode 120000 .#*shell*
+ create mode 120000 .#Player.java
+ create mode 100644 Book.java
+ create mode 100644 Sphinx.java
+bash-3.2$ git push origin master
+Counting objects: 10, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (10/10), 3.92 KiB | 0 bytes/s, done.
+Total 10 (delta 4), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+   2399d65..0599105  master -> master
+bash-3.2$ ls
+#*shell*#		Course$Question.class	List$Node.class		Sphinx.java
+#Player.java#		Course.class		List.class		Sphinx.java~
+*shell*			Course.java		List.java		Student.class
+Book.class		Creature.class		NPC.class		Student.java
+Book.java		Creature.java		NPC.java		Teacher.class
+Book.java~		EqList.class		Player.class		Teacher.java
+Connection$Access.class	EqList.java		Player.java		Util.java
+Connection.class	ErrorControl.class	Pollaxmud.class		World.class
+Connection.java		ErrorControl.java	Pollaxmud.java		World.java
+Control.class		Item.class		Room.class		makefile
+Control.java		Item.java		Room.java		plan
+bash-3.2$ make clean
+bash-3.2$ make comp
+Course.java:32: error: ';' expected
+	return name+"::"id+" with "+numQuestions();
+	                ^
+Course.java:32: error: not a statement
+	return name+"::"id+" with "+numQuestions();
+	                           ^
+2 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+bash-3.2$ make comp
+Course.java:24: error: <identifier> expected
+	questions.getNth.(Util.randomRange(1,2)).run();
+	                 ^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:24: error: ')' expected
+	questions.getNth((Util.randomRange(1,2)).run();
+	                                              ^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:24: error: ')' expected
+	questions.getNth((Util.randomRange(1,2)).run();
+	                                              ^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:24: error: non-static method randomRange(int,int) cannot be referenced from a static context
+	questions.getNth((Util.randomRange(1,2)).run());
+	                      ^
+Course.java:24: error: int cannot be dereferenced
+	questions.getNth((Util.randomRange(1,2)).run());
+	                                        ^
+2 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Course.java:24: error: ')' expected
+	questions.getNth((Util.randomRange(1,2)).run();
+	                                              ^
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+./Util.java:1: error: modifier static not allowed here
+public static class Util{
+              ^
+Course.java:24: error: non-static method randomRange(int,int) cannot be referenced from a static context
+	questions.getNth((Util.randomRange(1,2))).run();
+	                      ^
+2 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+bash-3.2$ make comp
+bash-3.2$ make comp
+bash-3.2$ make run
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Exception in thread "main" java.lang.NullPointerException
+	at Course.numQuestions(Course.java:28)
+	at Course.toString(Course.java:32)
+	at List$Node.toString(List.java:11)
+	at List.toString(List.java:103)
+	at List.toString(List.java:96)
+	at World.toStringCourses(World.java:87)
+	at World.toString(World.java:70)
+	at java.lang.String.valueOf(String.java:2994)
+	at java.io.PrintStream.println(PrintStream.java:821)
+	at Pollaxmud.main(Pollaxmud.java:4)
+make: *** [run] Error 1
+bash-3.2$ make run
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Creatures 
+   Bertil is at nowhere, has 'Empty', 
+Rooms 
+   Room 1
+   Room 2
+   Room 3
+   Room 4
+Connections
+   Room 1 <-> Room 2. Closed
+Courses
+   Potatis-kursen::Potatis-kursen with 0 questions.
+
+bash-3.2$ echo :)
+bash: syntax error near unexpected token `)'
+bash-3.2$ cat :)
+bash: syntax error near unexpected token `)'
+bash-3.2$ echo jfkdg
+jfkdg
+bash-3.2$ echo jfkdg
+jfkdg
+bash-3.2$ make comp
+bash-3.2$ make run
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Creatures 
+   Bertil is at 'Nowhere', has 'Empty', 
+Rooms 
+   Room 1
+   Room 2
+   Room 3
+   Room 4
+Connections
+   Room 1 <-> Room 2. Closed
+Courses
+   Potatis-kursen  Potatis-kursen with 0 questions.
+
+bash-3.2$ git add .
+bash-3.2$ git commit -a -m "Course and location in creature"
+[master 16675a5] Course and location in creature
+ 4 files changed, 38 insertions(+), 10 deletions(-)
+bash-3.2$ rm *shell*
+bash-3.2$ rm *shell*#
+rm: *shell*#: No such file or directory
+bash-3.2$ rm #*shell*#

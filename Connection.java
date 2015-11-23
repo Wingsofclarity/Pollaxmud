@@ -22,8 +22,11 @@ public class Connection{
 	if (room.equals(room1)){
 	    return room2;
 	}
-	else {
+	else if (room.equals(room2)){
 	    return room1;
+	}
+	else {
+	    return null;
 	}
     }
 
