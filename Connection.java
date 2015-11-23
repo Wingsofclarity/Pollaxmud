@@ -14,6 +14,7 @@ public class Connection{
     
 
     Connection(Room room1, Room room2){
+	assert(room1 != room2);
 	this.room1=room1;
 	this.room2=room2;
     }

@@ -6,6 +6,7 @@ public class Sphinx extends NPC{
     
     public void chat(){
 	System.out.println("Jag har ingen näsa :(");
+	super.chat();
     }
 
     public boolean graduate(Player p){
