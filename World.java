@@ -6,6 +6,7 @@ public class World{
     EqList<Creature> creatures;
     EqList<Room> rooms;
     EqList<Connection> connections;
+    EqList<Course> courses;
 
     World(){
 	//TODO: Open file with standard name and send to other constructor.
@@ -26,6 +27,9 @@ public class World{
 
 	creatures = new EqList<Creature>();
 	creatures.addElement(new Creature("Bertil"));
+
+	courses = new EqList<Course>();
+	courses.addElement(new Course("Potatis-kursen"));
     }
 
     World(FileReader file){
@@ -58,11 +62,13 @@ public class World{
 	return rooms;
     }
 
+    @Override
     public String toString(){
 	ErrorControl.error();
 	return "Creatures \n" + toStringCreatures()+
 	    "Rooms \n"+toStringRooms()+
-	    "Connections\n"+toStringConnections();
+	    "Connections\n"+toStringConnections()+
+	    "Courses\n"+toStringCourses();
     }
 
     public String toStringCreatures(){
@@ -75,7 +81,10 @@ public class World{
     }
 
     public String toStringConnections(){
-	ErrorControl.error();
 	return connections.toString();
+    }
+
+    public String toStringCourses(){
+	return courses.toString();
     }
 }

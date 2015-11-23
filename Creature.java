@@ -1,9 +1,9 @@
 //TODO: Make abstract.
 
 public class Creature{
-    String name;
-    EqList<Item> items;
-    Room location;
+    protected String name;
+    protected EqList<Item> items;
+    protected Room location;
 
     Creature(){
 	this("Unknown creature");
@@ -12,15 +12,18 @@ public class Creature{
     Creature(String name){
 	this.name=name;
 	items = new EqList<Item>();
+	location = null;
     }
 
-    public void move(){
-	ErrorControl.error();
+    public void move(Room to){
+	location=to;
     }
 
     public String location(){
-	ErrorControl.error();
-	return "nowhere";
+	if (location==null){
+	    	return "'Nowhere'";
+	}
+	return location.toString();
     }
 
     @Override

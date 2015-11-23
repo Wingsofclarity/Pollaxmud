@@ -12,6 +12,7 @@ public class Course{
 	this.name = name;
 	this.id = id;
 	this.hp = hp;
+	questions = new EqList<Question>();
     }
 
     public boolean equals(Object o){
@@ -21,7 +22,15 @@ public class Course{
     }
 
     public void ask(){
-	questions.head().run();
+	questions.getNth((Util.randomRange(1,2))).run();
+    }
+
+    public int numQuestions(){
+	return questions.size();
+    }
+
+    public String toString(){
+	return name+"  "+id+" with "+numQuestions()+" questions.";
     }
 
     private class Question{
