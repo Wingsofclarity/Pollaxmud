@@ -2,7 +2,6 @@ public class Course{
     String name;
     String id;
     EqList<Question> questions;
-    String book;
     int hp;
 
     Course(String id){
@@ -19,6 +18,5 @@ public class Course{
 	String question;
 	EqList<String> answers;
 	int right;
-    }
-    
+    }    
 }
