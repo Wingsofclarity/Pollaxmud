@@ -1,4 +1,9 @@
 public class Book extends Item{
     Course c;
-    int liter;
+
+    Book(int volume, Course c){
+        super(volume);
+        this.c = c;
+    }
+
 }
