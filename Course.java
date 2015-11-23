@@ -15,14 +15,24 @@ public class Course{
     }
 
     public boolean equals(Object o){
-	assert(o instance of Course);
+	assert(o instanceof Course);
 	Course c = (Course) o;
 	return id.equals(c.id);
+    }
+
+    public void ask(){
+	questions.head().run();
     }
 
     private class Question{
 	String question;
 	EqList<String> answers;
 	int right;
+
+	public boolean run(){
+	    System.out.println(question);
+	    System.out.println(answers);
+	    return false;
+	}
     }
 }

@@ -36,7 +36,7 @@ public class Connection{
 
     public boolean equals(Object o){
 	assert(o instanceof Connection);
-	Connection c = (Connection) o;
+	Connection con = (Connection) o;
 	return getRooms().equals(con.getRooms());
     }
 
