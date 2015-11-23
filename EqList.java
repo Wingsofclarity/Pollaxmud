@@ -7,7 +7,6 @@ public class EqList<ET extends Object> extends List<ET>{
     }
     
     public boolean has(ET e){
-	ErrorControl.error();
 	Node<ET> curNode = first;
 	while (curNode!=null){
 	    if (curNode.elm.equals(e)){ //Bug: Does not refer to the right equals

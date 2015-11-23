@@ -1,5 +1,6 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.IOException;
 
 public class World{
     //File map;
@@ -13,7 +14,6 @@ public class World{
 
 	//Cheat
 	rooms = new EqList<Room>();
-	rooms.addElement(new Room("Room 1"));
 	rooms.addElement(new Room("Room 2"));
 	rooms.addElement(new Room("Room 3"));
 	rooms.addElement(new Room("Room 4"));
@@ -33,19 +33,30 @@ public class World{
 	courses.addElement(new Course("Potatis-kursen"));
     }
 
-    World(FileReader file){
-	//TODO: Parse rooms with map.
+    World(FileReader roomFile, FileReader creatureFile){
 	
-	ErrorControl.error();
-	/*
-	assert(file.ready());
-	try(BufferedReader br = new BufferedReader(file)) {
+	rooms = new EqList<Room>();
+	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		// process the line.
+		rooms.addElement(new Room(line));
 	    }
 	}
-	
-	rooms = new EqList<Room>();*/
+	catch (IOException e){
+	    return;
+	}
+
+	creatures = new EqList<Creature>();
+	try(BufferedReader br = new BufferedReader(creatureFile)) {
+	    for(String line; (line = br.readLine()) != null; ) {
+		creatures.addElement(new Student(line));
+	    }
+	}
+	catch (IOException e){
+	    return;
+	}
+
+	courses = new EqList<Course>();
+	connections = new EqList<Connection>();
 	
     }
 
