@@ -20,6 +20,7 @@ public class EqList<ET extends Object> extends List<ET>{
 
     public boolean equals(Object o){
 	assert(o instanceof EqList);
+	@SuppressWarnings("unchecked") //Ignore unchecked cast cause it is kinda checked. I tihnk.
 	EqList<ET> eq = (EqList<ET>) o;
 	if (size() != eq.size()){
 	    return false;
@@ -44,6 +45,7 @@ public class EqList<ET extends Object> extends List<ET>{
 	return null;
     }
 
+    //This is bullshit.
     public ET get(ET e){
 	Node<ET> curNode = first;
 	for (int i = 0; curNode!=null; i++){
@@ -55,10 +57,15 @@ public class EqList<ET extends Object> extends List<ET>{
 	    curNode=curNode.next;
 	}
 	return null;
-	
     }
 
     public void remove(ET e){
 	take(e);
+    }
+
+    @Override
+    public int hashCode(){
+	ErrorControl.error();
+	return -1;
     }
 }

@@ -42,7 +42,7 @@ public class Creature{
 	ErrorControl.error();
 	return items;
     }
-
+    
     public String toString(){
 	return name+" is at "+location()+", has"+getItems().toString(" ",", ");
     }
@@ -52,6 +52,8 @@ public class Creature{
 	ErrorControl.error();
 	return -1;
     }
-    
-    public void interact(Creature c);
+
+    public void interact(Creature c){
+	ErrorControl.error();
+    }
 }
