@@ -1,8 +1,15 @@
+import java.util.*;
+
 public class Player extends Creature{
     private int hp = 0;
+    private LinkedList<Course> unfinishedCourses = new LinkedList<>();
 
     public int getHp(){
 	return hp;
+    }
+
+    public LinkedList<Course> getUnfinishedCourses(){
+        return unfinishedCourses;
     }
 
     @Override

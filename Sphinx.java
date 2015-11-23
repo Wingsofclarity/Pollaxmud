@@ -1,7 +1,7 @@
 public class Sphinx extends NPC{
     
     Sphinx(){
-	name = "The Sphinx";
+	super("The Sphinx");
     }
     
     public void chat(){
@@ -9,12 +9,24 @@ public class Sphinx extends NPC{
 	super.chat();
     }
 
-    public void graduate(Player p){
-	if(p.getHp()>=180){
+    public boolean graduate(Player p){
+        int number = p.getUnfinishedCourses().size();
+        boolean finished =  p.getUnfinishedCourses().isEmpty();
+
+	if(p.getHp()>=180 && finished){
 	    System.out.println("HURRA!");
+            return true;
 	}
-	else{
-	    System.out.println(":<");
-	}
+	else if(p.getHp() >= 180){
+	    System.out.println("You shall not graduate until you have finished your courses. Go do your homework!");
+            return false;
+        }
+        else if(finished){
+            System.out.println("You need 180 hp in order to graduate. You lack " + (180-p.getHp()) + " hp.");
+            return false;
+        }
+        else{
+            System.out.println("You have "+ number + " unfinished courses and less than 180 hp. Be gone!");
+            return false;}
     }
 }
