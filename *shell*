@@ -1,0 +1,506 @@
+bash-3.2$ make comp
+World.java:42: error: cannot find symbol
+	catch(IOException ex){
+	      ^
+  symbol:   class IOException
+  location: class World
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+World.java:35: error: unreported exception IOException; must be caught or declared to be thrown
+	assert(file.ready());
+	                 ^
+World.java:37: error: unreported exception IOException; must be caught or declared to be thrown
+	try(BufferedReader br = new BufferedReader(file)) {
+	                   ^
+  exception thrown from implicit call to close() on resource variable 'br'
+World.java:38: error: unreported exception IOException; must be caught or declared to be thrown
+	    for(String line; (line = br.readLine()) != null; ) {
+	                                        ^
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 errors
+make: *** [comp] Error 1
+bash-3.2$ make run
+World.java:35: error: unreported exception IOException; must be caught or declared to be thrown
+	assert(file.ready());
+	                 ^
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make run
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Creatures 
+   Bertil is at nowhere, has 'Empty', 
+Rooms 
+   Room 1
+   Room 2
+   Room 3
+   Room 4
+Connections
+   Room 1 <-> Room 2. Closed
+
+bash-3.2$ make comp_Xlint
+Room.java:1: warning: [overrides] Class Room overrides equals, but neither it nor any superclass overrides hashCode method
+public class Room{
+       ^
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+Creature.java:3: warning: [overrides] Class Creature overrides equals, but neither it nor any superclass overrides hashCode method
+public class Creature{
+       ^
+4 warnings
+bash-3.2$ make comp_Xlint
+Room.java:28: error: hashCode() in Room cannot override hashCode() in Object
+    public void hashCode(){
+                ^
+  return type void is not compatible with int
+Room.java:1: warning: [overrides] Class Room overrides equals, but neither it nor any superclass overrides hashCode method
+public class Room{
+       ^
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+Creature.java:3: warning: [overrides] Class Creature overrides equals, but neither it nor any superclass overrides hashCode method
+public class Creature{
+       ^
+1 error
+4 warnings
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+Room.java:31: error: missing return statement
+    }
+    ^
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+Creature.java:3: warning: [overrides] Class Creature overrides equals, but neither it nor any superclass overrides hashCode method
+public class Creature{
+       ^
+1 error
+3 warnings
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+Creature.java:3: warning: [overrides] Class Creature overrides equals, but neither it nor any superclass overrides hashCode method
+public class Creature{
+       ^
+3 warnings
+bash-3.2$ make comp_Xlint
+EqList.java:22: error: illegal generic type for instanceof
+	assert(o instanceof EqList<ET>);
+	                          ^
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+Creature.java:3: warning: [overrides] Class Creature overrides equals, but neither it nor any superclass overrides hashCode method
+public class Creature{
+       ^
+1 error
+3 warnings
+make: *** [comp_Xlint] Error 1
+bash-3.2$ ls
+Connection$Access.class	Creature.java~		List.java		Student.class
+Connection.class	EqList.class		NPC.class		Student.java
+Connection.java		EqList.java		NPC.java		Teacher.class
+Control.class		EqList.java~		Player.class		Teacher.java
+Control.java		ErrorControl.class	Player.java		Util.java
+Course$Question.class	ErrorControl.java	Pollaxmud.class		World.class
+Course.class		Item.class		Pollaxmud.java		World.java
+Course.java		Item.java		Room.class		World.java~
+Creature.class		List$Node.class		Room.java		makefile
+Creature.java		List.class		Room.java~		plan
+bash-3.2$ make comp
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+bash-3.2$ ls
+Connection$Access.class	EqList.class		NPC.java		Student.java~
+Connection.class	EqList.java		NPC.java~		Teacher.class
+Connection.java		EqList.java~		Player.class		Teacher.java
+Control.class		ErrorControl.class	Player.java		Util.java
+Control.java		ErrorControl.java	Pollaxmud.class		World.class
+Course$Question.class	Item.class		Pollaxmud.java		World.java
+Course.class		Item.java		Room.class		World.java~
+Course.java		List$Node.class		Room.java		makefile
+Creature.class		List.class		Room.java~		plan
+Creature.java		List.java		Student.class
+Creature.java~		NPC.class		Student.java
+bash-3.2$ git init 
+Initialized empty Git repository in /Users/Wings/Desktop/Code/pollaxmud/.git/
+bash-3.2$ git remote add origin https://github.com/Wingsofclarity/Pollaxmud.git
+bash-3.2$ git add .
+bash-3.2$ git commit -a -m "initi"
+[master (root-commit) 6739d1a] initi
+ 21 files changed, 539 insertions(+)
+ create mode 120000 .#Creature.java
+ create mode 120000 .#NPC.java
+ create mode 100644 .gitignore
+ create mode 100644 Connection.java
+ create mode 100644 Control.java
+ create mode 100644 Course.java
+ create mode 100644 Creature.java
+ create mode 100644 EqList.java
+ create mode 100644 ErrorControl.java
+ create mode 100644 Item.java
+ create mode 100644 List.java
+ create mode 100644 NPC.java
+ create mode 100644 Player.java
+ create mode 100644 Pollaxmud.java
+ create mode 100644 Room.java
+ create mode 100644 Student.java
+ create mode 100644 Teacher.java
+ create mode 100644 Util.java
+ create mode 100644 World.java
+ create mode 100644 makefile
+ create mode 100644 plan
+bash-3.2$ ls
+#Creature.java#		Creature.java		List.java		Student.class
+#NPC.java#		Creature.java~		NPC.class		Student.java
+Connection$Access.class	EqList.class		NPC.java		Student.java~
+Connection.class	EqList.java		NPC.java~		Teacher.class
+Connection.java		EqList.java~		Player.class		Teacher.java
+Control.class		ErrorControl.class	Player.java		Util.java
+Control.java		ErrorControl.java	Pollaxmud.class		World.class
+Course$Question.class	Item.class		Pollaxmud.java		World.java
+Course.class		Item.java		Room.class		World.java~
+Course.java		List$Node.class		Room.java		makefile
+Creature.class		List.class		Room.java~		plan
+bash-3.2$ git commit -a -m "init3"
+[master a91e120] init3
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+bash-3.2$ git push origin master
+Counting objects: 25, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (25/25), 4.90 KiB | 0 bytes/s, done.
+Total 25 (delta 1), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+ * [new branch]      master -> master
+bash-3.2$ make comp
+Creature.java:56: error: missing method body, or declare abstract
+    public void interact(Creature c);
+                ^
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Note: EqList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+bash-3.2$ make comp_Xlint
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:1: warning: [overrides] Class EqList overrides equals, but neither it nor any superclass overrides hashCode method
+public class EqList<ET extends Object> extends List<ET>{
+       ^
+2 warnings
+bash-3.2$make comp_Xlint
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+Course.java:9: error: no suitable constructor found for Course(String,String)
+	this(id,id);
+	^
+    constructor Course.Course(String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor Course.Course(String,String,int) is not applicable
+      (actual and formal argument lists differ in length)
+1 error
+1 warning
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+EqList.java:23: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+Course.java:9: error: no suitable constructor found for Course(String,String)
+	this(id,id);
+	^
+    constructor Course.Course(String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor Course.Course(String,String,int) is not applicable
+      (actual and formal argument lists differ in length)
+1 error
+1 warning
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+EqList.java:23: error: cannot find symbol
+	@SurpressWarning
+	 ^
+  symbol:   class SurpressWarning
+  location: class EqList<ET>
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:24: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+1 error
+1 warning
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+EqList.java:23: error: cannot find symbol
+	@SurpressWarning(unchecked)
+	 ^
+  symbol:   class SurpressWarning
+  location: class EqList<ET>
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:24: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+1 error
+1 warning
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+EqList.java:23: error: cannot find symbol
+	@SuppressWarnings(unchecked)
+	                  ^
+  symbol:   variable unchecked
+  location: class EqList<ET>
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+EqList.java:24: warning: [unchecked] unchecked cast
+	EqList<ET> eq = (EqList<ET>) o;
+	                             ^
+  required: EqList<ET>
+  found:    Object
+  where ET is a type-variable:
+    ET extends Object declared in class EqList
+1 error
+1 warning
+make: *** [comp_Xlint] Error 1
+bash-3.2$ make comp_Xlint
+bash-3.2$make clean
+bash-3.2$ git add .
+bash-3.2$ git commit -a -m "Ignore warning"
+[master 35b8e5c] Ignore warning
+ 4 files changed, 19 insertions(+), 8 deletions(-)
+ delete mode 120000 .#Creature.java
+bash-3.2$ git push origin master
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 700 bytes | 0 bytes/s, done.
+Total 5 (delta 4), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+   a91e120..35b8e5c  master -> master
+bash-3.2$ ls
+Book.java		Creature.java		NPC.java		Teacher.java
+Book.java~		EqList.java		Player.java		Util.java
+Connection.java		ErrorControl.java	Pollaxmud.java		World.java
+Control.java		Item.java		Room.java		makefile
+Course.java		List.java		Student.java		plan
+bash-3.2$ git commit -a -m "Book"
+[master bde3c80] Book
+ 4 files changed, 18 insertions(+), 5 deletions(-)
+bash-3.2$ git push origin
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+bash-3.2$ git push origin master
+Counting objects: 6, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 649 bytes | 0 bytes/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+   35b8e5c..bde3c80  master -> master
+bash-3.2$ git push origin master
+Everything up-to-date
+bash-3.2$ make comp
+Student.java:6: error: constructor NPC in class NPC cannot be applied to given types;
+	super(name);
+	^
+  required: no arguments
+  found: String
+  reason: actual and formal argument lists differ in length
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Teacher.java:1: error: constructor NPC in class NPC cannot be applied to given types;
+public class Teacher extends NPC{
+       ^
+  required: String
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Student.java:9: error: constructor NPC in class NPC cannot be applied to given types;
+    Student(String name, Course completed, Course current){
+                                                          ^
+  required: String
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+Student.java:11: error: call to super must be first statement in constructor
+	super(name);
+	     ^
+2 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+Student.java:9: error: constructor NPC in class NPC cannot be applied to given types;
+    Student(String name, Course completed, Course current){
+                                                          ^
+  required: String
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+Student.java:11: error: call to super must be first statement in constructor
+	super(name);
+	     ^
+2 errors
+make: *** [comp] Error 1
+bash-3.2$ make comp
+bash-3.2$ make comp
+bash-3.2$ git commit -a -m "NPC"
+[master e065da2] NPC
+ 4 files changed, 20 insertions(+), 8 deletions(-)
+ delete mode 120000 .#NPC.java
+bash-3.2$ git push origin master
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 723 bytes | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+   bde3c80..e065da2  master -> master
+bash-3.2$ make run
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Error 
+Creatures 
+   Bertil is at nowhere, has 'Empty', 
+Rooms 
+   Room 1
+   Room 2
+   Room 3
+   Room 4
+Connections
+   Room 1 <-> Room 2. Closed
+
+bash-3.2$ make comp
+bash-3.2$ git commit -a -m "Connection equals"
+[master 2399d65] Connection equals
+ 4 files changed, 15 insertions(+), 2 deletions(-)
+bash-3.2$ git push origin master
+Counting objects: 6, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 721 bytes | 0 bytes/s, done.
+Total 6 (delta 4), reused 0 (delta 0)
+To https://github.com/Wingsofclarity/Pollaxmud.git
+   e065da2..2399d65  master -> master
+bash-3.2$ make comop
+make: *** No rule to make target `comop'.  Stop.
+bash-3.2$ make comp
