@@ -30,4 +30,9 @@ public class Room{
 	ErrorControl.error();
 	return -1;
     }
+
+    public String getDescription(){
+	ErrorControl.error();
+	return "nothing";
+    }
 }

@@ -8,7 +8,7 @@ public class Player extends Creature{
     @Override
     public void move(Room to){
 	super.move(to);
-	System.out.println("I just entered "+location.toString());
+	System.out.println("I just entered "+location.toString()+location.getDescription());
     }
 
     public String toString(){
