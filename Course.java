@@ -1,9 +1,14 @@
+import java.util.*;
 public class Course{
     String name;
     String id;
-    EqList<Question> questions;
+    LinkedList<Question> questions;
     int hp;
 
+    Course(){
+	this("NotMath");
+    }
+    
     Course(String id){
 	this(id,id, 0);
     }
@@ -12,7 +17,7 @@ public class Course{
 	this.name = name;
 	this.id = id;
 	this.hp = hp;
-	questions = new EqList<Question>();
+	questions = new LinkedList<Question>();
     }
 
     public boolean equals(Object o){
@@ -22,7 +27,7 @@ public class Course{
     }
 
     public void ask(){
-	questions.getNth((Util.randomRange(1,2))).run();
+	questions.get((Util.randomRange(1,2))).run();
     }
 
     public int numQuestions(){
@@ -30,12 +35,12 @@ public class Course{
     }
 
     public String toString(){
-	return name+"  "+id+" with "+numQuestions()+" questions.";
+	return name+"  "+id+" with "+numQuestions()+" questions";
     }
 
     private class Question{
 	String question;
-	EqList<String> answers;
+	LinkedList<String> answers;
 	int right;
 
 	public boolean run(){

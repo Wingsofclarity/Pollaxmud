@@ -1,3 +1,4 @@
+import java.util.*;
 public class Connection{
     public enum Access{
 	Unlocked("Unlocked"), Locked("Locked"), Closed("Closed");
@@ -31,10 +32,10 @@ public class Connection{
 	}
     }
 
-    public EqList<Room> getRooms(){
-	EqList<Room> list = new EqList<Room>();
-	list.addElement(room1);
-	list.addElement(room2);
+    public LinkedList<Room> getRooms(){
+	LinkedList<Room> list = new LinkedList<Room>();
+	list.add(room1);
+	list.add(room2);
 	return list;
     }
 

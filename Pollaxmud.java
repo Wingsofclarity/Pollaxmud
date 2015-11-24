@@ -6,7 +6,9 @@ public class Pollaxmud{
 	try{
 	    FileReader roomFile = new FileReader("resources/roomData.txt");
 	    FileReader creatureFile = new FileReader("resources/creatureData.txt");
-	    World poll = new World(roomFile,creatureFile);
+	    FileReader connectionFile = new FileReader("resources/connectionData.txt");
+	    FileReader courseFile = new FileReader("resources/courseData.txt");
+	    World poll = new World(roomFile,creatureFile, connectionFile, courseFile);
 	    System.out.println(poll);
 	}
 	catch (FileNotFoundException e){

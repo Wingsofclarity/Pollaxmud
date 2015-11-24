@@ -1,8 +1,9 @@
 //TODO: Make abstract.
+import java.util.*;
 
 public class Creature{
     protected String name;
-    protected EqList<Item> items;
+    protected LinkedList<Item> items;
     protected Room location;
 
     Creature(){
@@ -11,7 +12,7 @@ public class Creature{
 
     Creature(String name){
 	this.name=name;
-	items = new EqList<Item>();
+	items = new LinkedList<Item>();
 	location = null;
     }
 
@@ -45,13 +46,13 @@ public class Creature{
 	ErrorControl.error();
     }
 
-    public EqList<Item> getItems(){
+    public LinkedList<Item> getItems(){
 	ErrorControl.error();
 	return items;
     }
     
     public String toString(){
-	return name+" is at "+location()+", has"+getItems().toString(" ",", ");
+	return name+" is at "+location()+", has"+getItems().toString();
     }
     
     @Override

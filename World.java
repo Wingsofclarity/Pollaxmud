@@ -1,95 +1,78 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.*;
 
 public class World{
     //File map;
-    EqList<Creature> creatures;
-    EqList<Room> rooms;
-    EqList<Connection> connections;
-    EqList<Course> courses;
+    LinkedList<Creature> creatures;
+    LinkedList<Room> rooms;
+    LinkedList<Connection> connections;
+    LinkedList<Course> courses;
 
     World(){
 	//TODO: Open file with standard name and send to other constructor.
 
 	//Cheat
-	rooms = new EqList<Room>();
-	rooms.addElement(new Room("Room 2"));
-	rooms.addElement(new Room("Room 3"));
-	rooms.addElement(new Room("Room 4"));
+	rooms = new LinkedList<Room>();
+	rooms.add(new Room("Room 2"));
+	rooms.add(new Room("Room 3"));
+	rooms.add(new Room("Room 4"));
+	rooms.add(new Room("Room 1"));
 	Room room1 = new Room( "Room 1");
-	Room room2= new Room( "Room 1");
-	assert(rooms.has(new Room("Room 1")));
+	Room room2= new Room( "Room 2");
+	assert(rooms.contains(new Room("Room 1")));
 	
 
-	connections = new EqList<Connection>();
-	connections.addElement(new Connection(getRoom("Room 1"), getRoom("Room 2")));
-	System.out.println(getConnectedRooms(rooms.head()));
+	connections = new LinkedList<Connection>();
+	connections.add(new Connection(room1, room2));
 
-	creatures = new EqList<Creature>();
-	creatures.addElement(new Student("Bertil"));
+	creatures = new LinkedList<Creature>();
+	creatures.add(new Student("Bertil"));
 
-	courses = new EqList<Course>();
-	courses.addElement(new Course("Potatis-kursen"));
+	courses = new LinkedList<Course>();
+	courses.add(new Course("Potatis-kursen"));
     }
 
-    World(FileReader roomFile, FileReader creatureFile){
-	
-	rooms = new EqList<Room>();
-	try(BufferedReader br = new BufferedReader(roomFile)) {
-	    for(String line; (line = br.readLine()) != null; ) {
-		rooms.addElement(new Room(line));
-	    }
-	}
-	catch (IOException e){
-	    return;
-	}
-
-	creatures = new EqList<Creature>();
-	try(BufferedReader br = new BufferedReader(creatureFile)) {
-	    for(String line; (line = br.readLine()) != null; ) {
-		creatures.addElement(new Student(line));
-	    }
-	}
-	catch (IOException e){
-	    return;
-	}
-
-	courses = new EqList<Course>();
-	connections = new EqList<Connection>();
+    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile, FileReader courseFile){
+	rooms = Parser.parseRoom(roomFile);
+	courses = Parser.parseCourse(courseFile);
+	creatures = Parser.parseCreature(creatureFile, courses);
+	connections = Parser.parseConnection(connectionFile);
 	
     }
 
     
-    public EqList<Creature> getCreatures(){
+    public LinkedList<Creature> getCreatures(){
 	return creatures;
     }
 
+    /*
     public Room getRoom(String name){
-	assert(rooms.has(new Room(name)));
+	assert(rooms.contains(new Room(name)));
 	return rooms.get(new Room(name));
-    }
+	}*/
     
-    public EqList<Room> getRooms(){
+    public LinkedList<Room> getRooms(){
 	return rooms;
     }
 
-    public EqList<Room> getConnectedRooms(Room r){
-	EqList<Room> e = new EqList<Room>();
+    public LinkedList<Room> getConnectedRooms(Room r){
+	LinkedList<Room> e = new LinkedList<Room>();
 	for (int i = 0; i<connections.size(); i++){
-	    Room to = connections.getNth(i).connect(r);
+	    Room to = connections.get(i).connect(r);
 	    if (to!=null){
-		e.addElement(to);
+		e.add(to);
 	    }
 	}
 	return e;
     }
 
-    public EqList<Creature> getCreaturesRoom(Room r){
-	EqList<Creature> e = new EqList<Creature>();
+    public LinkedList<Creature> getCreaturesRoom(Room r){
+	LinkedList<Creature> e = new LinkedList<Creature>();
 	for (int i = 0; i<creatures.size(); i++){
-	    if (creatures.getNth(i).getLocation().equals(r)){
-		e.addElement(creatures.getNth(i));
+	    if (creatures.get(i).getLocation().equals(r)){
+		e.add(creatures.get(i));
 	    }
 	}
 	return e;
@@ -97,15 +80,13 @@ public class World{
 
     @Override
     public String toString(){
-	ErrorControl.error();
-	return "Creatures \n" + toStringCreatures()+
-	    "Rooms \n"+toStringRooms()+
-	    "Connections\n"+toStringConnections()+
+	return "Creatures \n" + toStringCreatures()+"\n\n"+
+	    "Rooms \n"+toStringRooms()+"\n\n"+
+	    "Connections\n"+toStringConnections()+"\n\n"+
 	    "Courses\n"+toStringCourses();
     }
 
     public String toStringCreatures(){
-	ErrorControl.error();
 	return creatures.toString();
     }
 

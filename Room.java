@@ -1,3 +1,4 @@
+import java.util.*;
 public class Room{
     protected String name;
     
@@ -9,9 +10,9 @@ public class Room{
 	this.name=name;
     }
     
-    public EqList<Connection> getConnections(){
+    public LinkedList<Connection> getConnections(){
 	ErrorControl.error();
-	return new EqList<Connection>();
+	return new LinkedList<Connection>();
     }
 
     @Override

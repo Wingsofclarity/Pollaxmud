@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Player extends Creature{
     private int hp = 0;
-    private LinkedList<Course> unfinishedCourses = new LinkedList<>();
+    private LinkedList<Course> unfinishedCourses = new LinkedList<Course>();
 
     public int getHp(){
 	return hp;
