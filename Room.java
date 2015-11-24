@@ -34,6 +34,8 @@ public class Room{
 
     public String getDescription(){
 	ErrorControl.error();
+        System.out.println("This room has doors with the following signs: <signs>. In the room you find <items>. You also meet <creatures>.");
+
 	return "nothing";
     }
 }
