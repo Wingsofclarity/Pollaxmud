@@ -20,6 +20,7 @@ public class Parser{
     }
 
     public static LinkedList<Creature> parseCreature(FileReader creatureFile, LinkedList<Course> courses){
+
 	assert(courses.size()>1);
 	LinkedList<Creature> creatures = new LinkedList<Creature>();
 	try(BufferedReader br = new BufferedReader(creatureFile)) {
@@ -27,7 +28,7 @@ public class Parser{
 
 		switch (line){
 		case "randomStudent":
-		    randomStudent(courses);
+		    creatures.add(randomStudent(courses));
 		    break;
 
 		default:
@@ -66,7 +67,14 @@ public class Parser{
 	LinkedList<Course> courses = new LinkedList<Course>();
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		courses.add(randomCourse());
+		if (line.equals("randomCourse")){
+		    courses.add(randomCourse());
+		}
+		else{
+		    String[] devided = line.split(", ");
+		    assert(devided.length==3);
+		    courses.add(new Course(devided[1], devided[0], Integer.parseInt(devided[2])));
+		}
 	    }
 	    return courses;
 	}

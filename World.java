@@ -9,7 +9,8 @@ public class World{
     LinkedList<Room> rooms;
     LinkedList<Connection> connections;
     LinkedList<Course> courses;
-
+    Player player;
+    
     World(){
 	//TODO: Open file with standard name and send to other constructor.
 
@@ -39,7 +40,7 @@ public class World{
 	courses = Parser.parseCourse(courseFile);
 	creatures = Parser.parseCreature(creatureFile, courses);
 	connections = Parser.parseConnection(connectionFile);
-	
+	player = new Player("Mr.Player", rooms.getFirst());
     }
 
     

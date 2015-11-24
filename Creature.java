@@ -11,9 +11,13 @@ public class Creature{
     }
 
     Creature(String name){
+	this(name, null);
+    }
+    
+    Creature(String name, Room room){
 	this.name=name;
 	items = new LinkedList<Item>();
-	location = null;
+	location = room;
     }
 
     public void move(Room to){

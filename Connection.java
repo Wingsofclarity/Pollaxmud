@@ -72,4 +72,9 @@ public class Connection{
 	    }*/
 	return "Unknown access";
     }
+
+    public int hashCode(){
+	ErrorControl.error();
+	return -1;
+    }
 }

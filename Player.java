@@ -4,6 +4,11 @@ public class Player extends Creature{
     private int hp = 0;
     private LinkedList<Course> unfinishedCourses = new LinkedList<Course>();
 
+    Player(String name, Room room){
+	super(name, room);
+	hp = 60;
+    }
+
     public int getHp(){
 	return hp;
     }

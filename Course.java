@@ -49,4 +49,9 @@ public class Course{
 	    return false;
 	}
     }
+
+    public int hashCode(){
+	ErrorControl.error();
+	return -1;
+    }
 }
