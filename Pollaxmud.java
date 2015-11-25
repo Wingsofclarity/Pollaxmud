@@ -12,6 +12,7 @@ public class Pollaxmud{
 	    World poll = new World(roomFile,creatureFile, connectionFile, courseFile, questionFile);
 	    poll.interactAll();
 	    System.out.println(poll);
+	    System.out.println(poll.getUnreachable());
 	}
 	catch (FileNotFoundException e){
 	    System.out.println("Files missing. One or more Data files in directory resources are missing.");

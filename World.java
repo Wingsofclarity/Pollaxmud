@@ -12,34 +12,14 @@ public class World{
     Player player;
     
     World(){
-	//TODO: Open file with standard name and send to other constructor.
-
-	//Cheat
-	rooms = new LinkedList<Room>();
-	rooms.add(new Room("Room 2"));
-	rooms.add(new Room("Room 3"));
-	rooms.add(new Room("Room 4"));
-	rooms.add(new Room("Room 1"));
-	Room room1 = new Room("Room 1");
-	Room room2= new Room("Room 2");
-	assert(rooms.contains(new Room("Room 1")));
-	
-
-	connections = new LinkedList<Connection>();
-	connections.add(new Connection(room1, room2));
-
-	creatures = new LinkedList<Creature>();
-	creatures.add(new Student("Bertil"));
-
-	courses = new LinkedList<Course>();
-	courses.add(new Course("Potatis-kursen"));
     }
 
-    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile, FileReader courseFile, FileReader questionFile){
+    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile,
+	  FileReader courseFile, FileReader questionFile){
 	rooms = Parser.parseRoom(roomFile);
 	courses = Parser.parseCourse(courseFile);
 	creatures = Parser.parseCreature(creatureFile, courses);
-	connections = Parser.parseConnection(connectionFile);
+	connections = Parser.parseConnection(connectionFile, rooms);
 	player = new Player("Mr.Player", rooms.getFirst());
 	Parser.parseQuestion(questionFile, courses);
     }
@@ -83,6 +63,23 @@ public class World{
 	for (int i = 0; i<creatures.size(); i++){
 	    creatures.get(i).interact();
 	}
+    }
+
+    public LinkedList<Room> getUnreachable(){
+	LinkedList<Room> r = new LinkedList<Room>();
+	boolean reachable = false;
+	for (int i = 0; i<rooms.size(); i++){
+	    for (int j = 0; j<connections.size(); j++){
+		if (connections.get(j).getRooms().contains(rooms.get(i))){
+		    reachable = true;
+		    break;
+		}
+	    }
+	    if (!reachable){
+		r.add(rooms.get(i));
+	    }
+	}
+	return r;
     }
 
     @Override

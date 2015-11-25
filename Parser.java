@@ -49,36 +49,34 @@ public class Parser{
 
     }
 
-    public static LinkedList<Connection> parseConnection(FileReader connectionFile){
+    public static LinkedList<Connection> parseConnection(FileReader connectionFile, LinkedList<Room> rooms){
 	ErrorControl.error();
 	LinkedList<Connection> connections = new LinkedList<Connection>();
-	/*
+
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		connections.add(new Student(line));
+		String[] devided = line.split(", ");
+		assert(devided.length==2);
+		Room r1 = rooms.get(rooms.indexOf(new Room(devided[0])));
+		Room r2 = rooms.get(rooms.indexOf(new Room(devided[1])));
+		connections.add(new Connection(r1,r2));
 	    }
 	    return connections;
 	}
 	catch (IOException e){
 	    ErrorControl.error();
 	    return connections;
-	    }*/
-	return connections;
+	}
     }
 
     public static LinkedList<Course> parseCourse(FileReader courseFile){
 	LinkedList<Course> courses = new LinkedList<Course>();
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		if (line.equals("randomCourse")){
-		    ErrorControl.error();
-		    courses.add(randomCourse());
-		}
-		else{
-		    String[] devided = line.split(", ");
-		    assert(devided.length==3);
-		    courses.add(new Course(devided[1], devided[0], Integer.parseInt(devided[2])));
-		}
+		String[] devided = line.split(", ");
+		assert(devided.length==3);
+		courses.add(new Course(devided[1], devided[0], Integer.parseInt(devided[2])));
+		
 	    }
 	    return courses;
 	}
@@ -106,6 +104,7 @@ public class Parser{
 	    ErrorControl.error();
 	    return;
 	}
+
     }
 
     public static Student randomStudent(LinkedList<Course> courses){
@@ -122,20 +121,9 @@ public class Parser{
 	return new Teacher("Teacherguy", c);
     }
 
-
-    public static Course randomCourse(){
-	ErrorControl.error();
-	return new Course();
-    }
-
     public static Room randomRoom(){
 	ErrorControl.error();
 	return new Room();
-    }
-
-    public static LinkedList<Connection> randomConnection(LinkedList<Room> rooms){
-	ErrorControl.error();
-	return new LinkedList<Connection>();
     }
 
     public static int randomWithRange(int min, int max)

@@ -77,4 +77,9 @@ public class Creature{
     public void interact(){
 	this.chat();
     }
+
+    public String toStringItems(){
+	return items.toString();
+    }
 }
+
