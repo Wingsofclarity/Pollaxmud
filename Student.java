@@ -20,4 +20,9 @@ public class Student extends NPC{
     public String toString(){
 	return "Student: "+super.toString();
     }
+
+    @Override
+    public void interact(){
+	System.out.println(completedC.getQuestion());
+    }
 }

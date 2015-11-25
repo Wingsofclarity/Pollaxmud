@@ -12,4 +12,8 @@ public abstract class NPC extends Creature{
 	System.out.println("Name: "+name+
 			   "Items: "+items.toString());
     }
+
+    public void interact(){
+	this.chat();
+    }
 }

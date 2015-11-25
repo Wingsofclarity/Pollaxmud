@@ -6,6 +6,6 @@ public class ErrorControl{
     }
 
     public static void error(String s){
-	System.out.println("Error "+s);
+	System.err.println("Error "+s);
     }
 }

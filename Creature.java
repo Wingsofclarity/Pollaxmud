@@ -73,4 +73,8 @@ public class Creature{
     public void chat(){
 	System.out.println("I'm "+this.toString());
     }
+
+    public void interact(){
+	this.chat();
+    }
 }

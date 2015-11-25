@@ -20,8 +20,8 @@ public class World{
 	rooms.add(new Room("Room 3"));
 	rooms.add(new Room("Room 4"));
 	rooms.add(new Room("Room 1"));
-	Room room1 = new Room( "Room 1");
-	Room room2= new Room( "Room 2");
+	Room room1 = new Room("Room 1");
+	Room room2= new Room("Room 2");
 	assert(rooms.contains(new Room("Room 1")));
 	
 
@@ -35,14 +35,14 @@ public class World{
 	courses.add(new Course("Potatis-kursen"));
     }
 
-    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile, FileReader courseFile){
+    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile, FileReader courseFile, FileReader questionFile){
 	rooms = Parser.parseRoom(roomFile);
 	courses = Parser.parseCourse(courseFile);
 	creatures = Parser.parseCreature(creatureFile, courses);
 	connections = Parser.parseConnection(connectionFile);
 	player = new Player("Mr.Player", rooms.getFirst());
+	Parser.parseQuestion(questionFile, courses);
     }
-
     
     public LinkedList<Creature> getCreatures(){
 	return creatures;
@@ -77,6 +77,12 @@ public class World{
 	    }
 	}
 	return e;
+    }
+
+    public void interactAll(){
+	for (int i = 0; i<creatures.size(); i++){
+	    creatures.get(i).interact();
+	}
     }
 
     @Override

@@ -31,6 +31,10 @@ public class Parser{
 		    creatures.add(randomStudent(courses));
 		    break;
 
+		case "randomTeacher":
+		    creatures.add(randomTeacher(courses));
+		    break;
+
 		default:
 		    creatures.add(new Student(line));
 		    break;	
@@ -63,11 +67,11 @@ public class Parser{
     }
 
     public static LinkedList<Course> parseCourse(FileReader courseFile){
-	ErrorControl.error();
 	LinkedList<Course> courses = new LinkedList<Course>();
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		if (line.equals("randomCourse")){
+		    ErrorControl.error();
 		    courses.add(randomCourse());
 		}
 		else{
@@ -84,10 +88,40 @@ public class Parser{
 	}
     }
 
-    public static Student randomStudent(LinkedList<Course> courses){
-	ErrorControl.error();
-	return new Student();
+    public static void parseQuestion(FileReader questionFile, LinkedList<Course> courses){
+	try(BufferedReader br = new BufferedReader(questionFile)) {
+	    for(String line; (line = br.readLine()) != null; ) {
+		String[] devided = line.split(", ");
+		assert(devided.length==7);
+		LinkedList<String> answers = new LinkedList<String>();
+		for (int i = 2; i<=5; i++){
+		    answers.add(devided[i]);
+		}
+		courses.get(courses.indexOf(new Course(devided[0]))).addQuestion(devided[1],answers,
+								    Integer.parseInt(devided[6]));
+	    }
+	    return;
+	}
+	catch (IOException e){
+	    ErrorControl.error();
+	    return;
+	}
     }
+
+    public static Student randomStudent(LinkedList<Course> courses){
+	Course c1 = courses.get(randomWithRange(0,courses.size()-1));
+	Course c2 = courses.get(randomWithRange(0,courses.size()-1));
+        while (c2==c1){
+	    c2 = courses.get(randomWithRange(0,courses.size()-1));
+	}
+	return new Student("Studentguy",c1 ,c2);
+    }
+
+    public static Teacher randomTeacher(LinkedList<Course> courses){
+	Course c = courses.get(randomWithRange(0,courses.size()-1));
+	return new Teacher("Teacherguy", c);
+    }
+
 
     public static Course randomCourse(){
 	ErrorControl.error();
@@ -109,4 +143,5 @@ public class Parser{
 	int range = (max - min) + 1;     
 	return (int)(Math.random() * range) + min;
     }
+
 }
