@@ -17,11 +17,12 @@ public class Player extends Creature{
         return unfinishedCourses;
     }
 
+    /*
     @Override
     public void move(Room to){
 	super.move(to);
 	//System.out.println("I just entered "+location.toString()+location.getDescription());
-    }
+    }*/
 
     @Override
     public String toString(){
