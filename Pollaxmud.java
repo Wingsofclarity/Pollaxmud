@@ -9,10 +9,18 @@ public class Pollaxmud{
 	    FileReader connectionFile = new FileReader("resources/connectionData.txt");
 	    FileReader courseFile = new FileReader("resources/courseData.txt");
 	    FileReader questionFile = new FileReader("resources/questionData.txt");
-	    World poll = new World(roomFile,creatureFile, connectionFile, courseFile, questionFile);
-	    poll.interactAll();
-	    System.out.println(poll);
-	    System.out.println(poll.getUnreachable());
+	    World poll = new World(roomFile,creatureFile, connectionFile,
+				   courseFile, questionFile);
+	    Control control = new Control(poll.player, poll);
+	    while (true){
+		System.out.print("Awaiting input..");
+		control.scan();
+		if (control.exit){
+		    System.out.println(poll);
+		    return;
+		}
+	    }
+
 	}
 	catch (FileNotFoundException e){
 	    System.out.println("Files missing. One or more Data files in directory resources are missing.");
