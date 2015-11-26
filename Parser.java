@@ -114,6 +114,19 @@ public class Parser{
 
     }
 
+
+
+    public static Player parsePlayer (LinkedList<Room> rooms, LinkedList<Course> courses){
+
+        LinkedList<Course> completedCourses = new LinkedList<>();
+
+        for(int i = 0; i < 6; i++){
+            completedCourses.add(randomCourse(courses));
+        }
+
+        return new Player("Mr.Player", rooms.getFirst(), courses);
+    }
+
     public static Student randomStudent(LinkedList<Course> courses){
 	Course c1 = courses.get(randomWithRange(0,courses.size()-1));
 	Course c2 = courses.get(randomWithRange(0,courses.size()-1));
@@ -137,6 +150,19 @@ public class Parser{
     {
 	int range = (max - min) + 1;     
 	return (int)(Math.random() * range) + min;
+    }
+
+
+    public static Course randomCourse(LinkedList<Course> courses){
+        int size = courses.size();
+
+	if(size == 0){
+            ErrorControl.error();
+	}
+
+        Random random = new Random();
+        int randomCourse = random.nextInt(size);
+	return courses.get(randomCourse);
     }
 
 }

@@ -20,7 +20,7 @@ public class World{
 	courses = Parser.parseCourse(courseFile);
 	creatures = Parser.parseCreature(creatureFile, courses);
 	connections = Parser.parseConnection(connectionFile, rooms);
-	player = new Player("Mr.Player", rooms.getFirst(), courses);
+	player = Parser.parsePlayer(rooms, courses);
 	Parser.parseQuestion(questionFile, courses);
     }
     
