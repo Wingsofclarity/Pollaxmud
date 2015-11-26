@@ -5,11 +5,11 @@ import java.util.*;
 
 public class World{
     //File map;
-    LinkedList<Creature> creatures;
-    LinkedList<Room> rooms;
-    LinkedList<Connection> connections;
-    LinkedList<Course> courses;
-    Player player;
+    private LinkedList<Creature> creatures;
+    private LinkedList<Room> rooms;
+    private LinkedList<Connection> connections;
+    private LinkedList<Course> courses;
+    public Player player;
     
     World(){
     }
@@ -80,6 +80,27 @@ public class World{
 	    }
 	}
 	return r;
+    }
+
+    public String getDescription(Room r){
+	if (r == null) return "You see absolute emptiness. You are nowhere.";
+	String s = r.toString();
+	s +="\n  Creatures: ";
+	for (int i = 0; i<creatures.size(); i++){
+	    if (r.equals(creatures.get(i).getLocation())){
+		s+=creatures.get(i).toString()+", ";
+	    }
+	}
+
+	s+= " it connects to ";
+	s+=getConnectedRooms(r).toString();
+	/*for (int i = 0; i<connections.size(); i++){
+	    if (connections.get(i).getRooms().contains(r)){
+		s+=" "+connections.get(i).connect(r).toString();
+	    }
+	    }*/
+	
+	return s;
     }
 
     @Override

@@ -106,6 +106,5 @@ public class Course{
     public void setHp(int a){
 	if (a<0) hp = 0;
 	else hp = a;
-	//this.hp=Math.abs(a);
     }
 }
