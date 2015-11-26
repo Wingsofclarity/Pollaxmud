@@ -18,6 +18,7 @@ Amyntas
 Dashing
 Calimerio
 Unity
+Mr.Sparkles
 Sparkles
 Xaveria
 Celina
@@ -26,3 +27,13 @@ Agaloa
 Bubbles
 Silvesse
 Simona
+Voidbough
+Winterrage
+Lightshadow
+Swiftthorn
+Stagbough
+Thundergrove
+Leafswift
+Lunaleaf
+Moonflower
+Rapidflower

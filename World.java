@@ -96,11 +96,7 @@ public class World{
 
 	s+= " it connects to ";
 	s+=getConnectedRooms(r).toString();
-	/*for (int i = 0; i<connections.size(); i++){
-	    if (connections.get(i).getRooms().contains(r)){
-		s+=" "+connections.get(i).connect(r).toString();
-	    }
-	    }*/
+	s+=" all creatures "+getNPCs().toString();
 	
 	return s;
     }

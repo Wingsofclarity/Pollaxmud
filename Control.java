@@ -26,11 +26,19 @@ public class Control{
 	case "look":
 	    description();
 	    break;
+
+	case "interact":
+	    interact(attribute);
+	    break;
 	    
 	case "exit":
 	    exit();
 	    break;
 	}
+    }
+
+    public void interact(String name){
+	world.getNPCs().get(world.getNPCs().indexOf(new Teacher(name))).interact();
     }
 
     public void description(){
