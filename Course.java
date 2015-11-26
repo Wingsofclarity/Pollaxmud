@@ -46,7 +46,7 @@ public class Course{
 	    System.out.println(toString());
 	    ErrorControl.error();
 	}
-        int size = this.questions.size();
+        int size = questions.size();
         Random random = new Random();
         int randomQuestion = random.nextInt(size);
 	return questions.get(randomQuestion);
