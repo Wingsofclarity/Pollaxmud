@@ -36,6 +36,7 @@ public class Parser{
 		    break;
 
 		default:
+		    //TODO: Defensive programming
 		    creatures.add(new Student(line));
 		    break;	
 		}
@@ -50,16 +51,20 @@ public class Parser{
     }
 
     public static LinkedList<Connection> parseConnection(FileReader connectionFile, LinkedList<Room> rooms){
-	ErrorControl.error();
 	LinkedList<Connection> connections = new LinkedList<Connection>();
 
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		assert(devided.length==2);
+
+		//TODO: Defensive programming
 		Room r1 = rooms.get(rooms.indexOf(new Room(devided[0])));
 		Room r2 = rooms.get(rooms.indexOf(new Room(devided[1])));
-		connections.add(new Connection(r1,r2));
+		Connection con = new Connection(r1,r2);
+		if (devided.length>2){
+		    con.setAccess(devided[2]);
+		}
+		connections.add(con);
 	    }
 	    return connections;
 	}
@@ -74,6 +79,7 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
+		//TODO: Defensive programming
 		assert(devided.length==3);
 		courses.add(new Course(devided[1], devided[0], Integer.parseInt(devided[2])));
 		
@@ -91,6 +97,7 @@ public class Parser{
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
 		assert(devided.length==7);
+		//TODO: Defensive programming
 		LinkedList<String> answers = new LinkedList<String>();
 		for (int i = 2; i<=5; i++){
 		    answers.add(devided[i]);

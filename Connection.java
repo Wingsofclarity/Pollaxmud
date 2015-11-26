@@ -49,6 +49,27 @@ public class Connection{
 	this.access=a;
     }
 
+    public void setAccess(String s){
+	s=s.toLowerCase();
+	switch(s){
+	case "unlocked":
+	    setAccess(Access.Unlocked);
+	    break;
+
+	case "locked":
+	    setAccess(Access.Locked);
+	    break;
+
+	case "closed":
+	    setAccess(Access.Closed);
+	    break;
+
+	default:
+	    ErrorControl.error();
+	    break;
+	}
+    }
+
     public String toString(){
 	ErrorControl.error();
 	room1.toString();
