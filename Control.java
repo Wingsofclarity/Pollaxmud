@@ -38,23 +38,13 @@ public class Control{
     }
 
     public void chooseDirection(String direction){
-
-        switch(direction){
-        case "n": 
-            System.out.println("Goes north.");
-            break;
-        case "e": 
-            System.out.println("Goes east.");
-            break;
-        case "s": 
-             System.out.println("Goes south.");
-            break;
-        case "w": 
-            System.out.println("Goes west.");
-            break;
-        default: 
-            System.out.println("Invalid direction.");
-        }
+	Room r = new Room(direction);
+	if (world.getConnectedRooms(player.getLocation()).contains(r)){
+	    //Cheat
+	    player.move(world.getRooms().get(world.getRooms().indexOf(r)));
+	    System.out.println("I just entered a new room.\n");
+	    description();
+	}
     }
 
     public void exit(){

@@ -25,7 +25,7 @@ public class Room{
 	if (o==null) return false;
 	assert(o instanceof Room);
 	Room r = (Room)o;
-	return name.equals(r.name);
+	return name.toLowerCase().equals(r.name.toLowerCase());
     }
     
     public int hashCode(){
