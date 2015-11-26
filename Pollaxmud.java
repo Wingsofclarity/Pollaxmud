@@ -9,8 +9,9 @@ public class Pollaxmud{
 	    FileReader connectionFile = new FileReader("resources/connectionData.txt");
 	    FileReader courseFile = new FileReader("resources/courseData.txt");
 	    FileReader questionFile = new FileReader("resources/questionData.txt");
+	    FileReader nameFile = new FileReader("resources/namesData.txt");
 	    World poll = new World(roomFile,creatureFile, connectionFile,
-				   courseFile, questionFile);
+				   courseFile, questionFile, nameFile);
 	    Control control = new Control(poll.player, poll);
 	    while (true){
 		System.out.print("Awaiting input..");
