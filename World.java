@@ -53,9 +53,14 @@ public class World{
 
     public LinkedList<NPC> getNPCsRoom(Room r){
 	LinkedList<NPC> e = new LinkedList<NPC>();
-	for (int i = 0; i<NPCs.size(); i++){
-	    if (NPCs.get(i).getLocation().equals(r)){
-		e.add(NPCs.get(i));
+	Object[] array = NPCs.values().toArray();
+	for (int i = 0; i<array.length; i++){
+	    NPC element = (NPC) array[i];
+	    if (element.getLocation()==null){
+		
+	    }
+	    else if (element.getLocation().equals(r)){
+		e.add(element);
 	    }
 	}
 	return e;
@@ -87,7 +92,7 @@ public class World{
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	LinkedList<Room> connected = getConnectedRooms(r);
-	return r.getDescription()+ " There is "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
+	return r.getDescription()+" Creatures called "+getNPCsRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
 
     @Override

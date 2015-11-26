@@ -44,12 +44,18 @@ public class Parser{
 		switch (line){
 		case "randomStudent":{
 		    Student s = randomStudent(courses, names);
+		    while (NPCs.containsKey(s.getName())){
+			s = randomStudent(courses, names);
+		    }
 		    NPCs.put(s.getName(), s);
 		    break;
 		}
 
 		case "randomTeacher":{
 		    Teacher t = randomTeacher(courses, names);
+		    while (NPCs.containsKey(t.getName())){
+			t = randomTeacher(courses, names);
+		    }
 		    NPCs.put(t.getName(), t);
 		    break;
 		}
@@ -139,29 +145,35 @@ public class Parser{
 
     public static Player parsePlayer (HashMap<String,Room> rooms, HashMap<String,Course> courses){
         LinkedList<Course> completedCourses = new LinkedList<Course>();
-
+	Random generator = new Random();
         for(int i = 0; i < 6; i++){
-
-            completedCourses.add(randomCourse(courses));
+	    Object[] values = courses.values().toArray();
+	    Course randomCourse = (Course) values[generator.nextInt(values.length)];
+            completedCourses.add(randomCourse);
         }
 
-        return new Player("Mr.Player", rooms.get("2000"), completedCourses);
+	
+	Object[] values = rooms.values().toArray();
+	Room randomRoom = (Room) values[generator.nextInt(values.length)];
+
+        return new Player("Mr.Player", randomRoom, completedCourses);
     }
 
     public static Student randomStudent(HashMap<String,Course> courses, LinkedList<String> names){
-
-	Course c1 = courses.get("000111");
-	Course c2 = courses.get("POTM123");
-        while (c2==c1){
-	    c2 = courses.get(randomWithRange(0,courses.size()-1));
+	Random generator = new Random();
+	Object[] values =  courses.values().toArray();
+	Course c1 = (Course) values[generator.nextInt(values.length)];
+	Course c2 = (Course) values[generator.nextInt(values.length)];
+        while (c2.equals(c1)){
+	    c2 = (Course) values[generator.nextInt(values.length)];
 	}
-	String n = names.get(randomWithRange(0,courses.size()-1));
+	String n = names.get(randomWithRange(0,names.size()-1));
 	return new Student(n ,c1 ,c2);
     }
 
     public static Teacher randomTeacher(HashMap<String,Course> courses, LinkedList<String> names){
 	Course c = courses.get(randomWithRange(0,courses.size()-1));
-	String n = names.get(randomWithRange(0,courses.size()-1));
+	String n = names.get(randomWithRange(0,names.size()-1));
 	return new Teacher(n , c);
     }
 
