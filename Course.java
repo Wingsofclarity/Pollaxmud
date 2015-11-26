@@ -28,7 +28,8 @@ public class Course{
     }
 
     public void ask(){
-	questions.get(0).run();
+
+	getRandQuestion().run();
     }
 
     public String getQuestion(){
@@ -37,7 +38,18 @@ public class Course{
 	    ErrorControl.error();
 	    return "";
 	}
-	return questions.get(0).toString();
+	return getRandQuestion().toString();
+    }
+
+    public Question getRandQuestion(){
+	if(numQuestions()==0){
+	    System.out.println(toString());
+	    ErrorControl.error();
+	}
+        int size = this.questions.size();
+        Random random = new Random();
+        int randomQuestion = random.nextInt(size);
+	return questions.get(randomQuestion);
     }
 
     public int numQuestions(){
