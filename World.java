@@ -5,10 +5,10 @@ import java.util.*;
 
 public class World{
     //File map;
-    private LinkedList<NPC> NPCs;
-    private LinkedList<Room> rooms;
+    private HashMap<String, NPC> NPCs;
+    private HashMap<String,Room> rooms;
     private LinkedList<Connection> connections;
-    private LinkedList<Course> courses;
+    private HashMap<String, Course> courses;
     private LinkedList<String> names;
     public Player player;
     
@@ -26,7 +26,7 @@ public class World{
 	Parser.parseQuestion(questionFile, courses);
     }
     
-    public LinkedList<NPC> getNPCs(){
+    public HashMap<String, NPC> getNPCs(){
 	return NPCs;
     }
 
@@ -36,7 +36,7 @@ public class World{
 	return rooms.get(new Room(name));
 	}*/
     
-    public LinkedList<Room> getRooms(){
+    public HashMap<String,Room> getRooms(){
 	return rooms;
     }
 
@@ -59,7 +59,7 @@ public class World{
 	    }
 	}
 	return e;
-    }
+    } 
 
     public void interactAll(){
 	for (int i = 0; i<NPCs.size(); i++){
@@ -86,19 +86,8 @@ public class World{
 
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
-	String s = r.toString();
-	s +="\n  NPCs: ";
-	for (int i = 0; i<NPCs.size(); i++){
-	    if (r.equals(NPCs.get(i).getLocation())){
-		s+=NPCs.get(i).toString()+", ";
-	    }
-	}
-
-	s+= " it connects to ";
-	s+=getConnectedRooms(r).toString();
-	s+=" all creatures "+getNPCs().toString();
-	
-	return s;
+	LinkedList<Room> connected = getConnectedRooms(r);
+	return r.getDescription()+ " There is "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
 
     @Override

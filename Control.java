@@ -38,7 +38,7 @@ public class Control{
     }
 
     public void interact(String name){
-	world.getNPCs().get(world.getNPCs().indexOf(new Teacher(name))).interact();
+	world.getNPCs().get(name).interact();
     }
 
     public void description(){
@@ -46,10 +46,10 @@ public class Control{
     }
 
     public void chooseDirection(String direction){
-	Room r = new Room(direction);
+	Room r = world.getRooms().get(direction);
 	if (world.getConnectedRooms(player.getLocation()).contains(r)){
 	    //Cheat
-	    player.move(world.getRooms().get(world.getRooms().indexOf(r)));
+	    player.move(r);
 	    System.out.println("I just entered a new room.\n");
 	    description();
 	}

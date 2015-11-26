@@ -52,6 +52,10 @@ public class Course{
 	return questions.get(randomQuestion);
     }
 
+    public String getId(){
+	return id;
+    }
+
     public int numQuestions(){
 	return questions.size();
     }

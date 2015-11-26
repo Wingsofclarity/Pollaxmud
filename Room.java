@@ -1,13 +1,18 @@
 import java.util.*;
 public class Room{
     protected String name;
+    protected String description;
     
     Room(){
 	this("Unknown room");
     }
-
+    
     Room(String name){
+	this(name, name+" is empty.");
+    }
+    Room(String name, String description){
 	this.name=name;
+	this.description=description;
     }
     
     public LinkedList<Connection> getConnections(){
@@ -33,10 +38,11 @@ public class Room{
 	return -1;
     }
 
+    public String getName(){
+	return name;
+    }
+    
     public String getDescription(){
-	ErrorControl.error();
-        System.out.println("This room has doors with the following signs: <signs>. In the room you find <items>. You also meet <creatures>.");
-
-	return "nothing";
+	return description;
     }
 }

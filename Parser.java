@@ -5,11 +5,12 @@ import java.io.IOException;
 
 public class Parser{
 
-    public static LinkedList<Room> parseRoom(FileReader roomFile){
-	LinkedList<Room> rooms = new LinkedList<Room>();
+    public static HashMap<String,Room> parseRoom(FileReader roomFile){
+	HashMap<String,Room> rooms = new HashMap<String,Room>();
 	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		rooms.push(new Room(line));
+		Room r = new Room(line);
+		rooms.put(r.getName(), r);
 	    }
 	    return rooms;
 	}
@@ -33,26 +34,32 @@ public class Parser{
 	}
     }
 
-    public static LinkedList<NPC> parseNPC(FileReader NPCFile, LinkedList<Course> courses, LinkedList<String> names){
+    public static HashMap<String, NPC> parseNPC(FileReader NPCFile, HashMap<String,Course> courses, LinkedList<String> names){
 
 	assert(courses.size()>1);
-	LinkedList<NPC> NPCs = new LinkedList<NPC>();
+	HashMap<String, NPC> NPCs = new HashMap<String, NPC>();
 	try(BufferedReader br = new BufferedReader(NPCFile)) {
-	    for(String line; (line = br.readLine()) != null; ) {
 
+	    for(String line; (line = br.readLine()) != null;){
 		switch (line){
-		case "randomStudent":
-		    NPCs.add(randomStudent(courses, names));
+		case "randomStudent":{
+		    Student s = randomStudent(courses, names);
+		    NPCs.put(s.getName(), s);
 		    break;
+		}
 
-		case "randomTeacher":
-		    NPCs.add(randomTeacher(courses, names));
+		case "randomTeacher":{
+		    Teacher t = randomTeacher(courses, names);
+		    NPCs.put(t.getName(), t);
 		    break;
+		}
 
-		default:
+		default:{
 		    //TODO: Defensive programming
-		    NPCs.add(new Student(line));
-		    break;	
+		    Student s2 = new Student(line);
+		    NPCs.put(s2.getName(), s2);
+		    break;
+		}
 		}
 	    }
 	    return NPCs;
@@ -64,7 +71,7 @@ public class Parser{
 
     }
 
-    public static LinkedList<Connection> parseConnection(FileReader connectionFile, LinkedList<Room> rooms){
+    public static LinkedList<Connection> parseConnection(FileReader connectionFile, HashMap<String,Room> rooms){
 	LinkedList<Connection> connections = new LinkedList<Connection>();
 
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
@@ -72,8 +79,8 @@ public class Parser{
 		String[] devided = line.split(", ");
 
 		//TODO: Defensive programming
-		Room r1 = rooms.get(rooms.indexOf(new Room(devided[0])));
-		Room r2 = rooms.get(rooms.indexOf(new Room(devided[1])));
+		Room r1 = rooms.get(devided[0]);
+		Room r2 = rooms.get(devided[1]);
 		Connection con = new Connection(r1,r2);
 		if (devided.length>2){
 		    con.setAccess(devided[2]);
@@ -88,14 +95,16 @@ public class Parser{
 	}
     }
 
-    public static LinkedList<Course> parseCourse(FileReader courseFile){
-	LinkedList<Course> courses = new LinkedList<Course>();
+    public static HashMap<String, Course> parseCourse(FileReader courseFile){
+	HashMap<String,Course> courses = new HashMap<String,Course>();
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
 		//TODO: Defensive programming
 		assert(devided.length==3);
-		courses.add(new Course(devided[1], devided[0], Integer.parseInt(devided[2])));
+		Course c = new Course(devided[1], devided[0], Integer.parseInt(devided[2]));
+		assert(!courses.containsKey(c.getId()));
+		courses.put(c.getId(),c);
 		
 	    }
 	    return courses;
@@ -106,7 +115,7 @@ public class Parser{
 	}
     }
 
-    public static void parseQuestion(FileReader questionFile, LinkedList<Course> courses){
+    public static void parseQuestion(FileReader questionFile, HashMap<String,Course> courses){
 	try(BufferedReader br = new BufferedReader(questionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
@@ -116,8 +125,7 @@ public class Parser{
 		for (int i = 2; i<=5; i++){
 		    answers.add(devided[i]);
 		}
-		courses.get(courses.indexOf(new Course(devided[0]))).addQuestion(devided[1],answers,
-								    Integer.parseInt(devided[6]));
+		courses.get(devided[0]).addQuestion(devided[1], answers, Integer.parseInt(devided[6]));
 	    }
 	    return;
 	}
@@ -129,21 +137,21 @@ public class Parser{
     }
 
 
-    public static Player parsePlayer (LinkedList<Room> rooms, LinkedList<Course> courses){
-
-        LinkedList<Course> completedCourses = new LinkedList<>();
+    public static Player parsePlayer (HashMap<String,Room> rooms, HashMap<String,Course> courses){
+        LinkedList<Course> completedCourses = new LinkedList<Course>();
 
         for(int i = 0; i < 6; i++){
+
             completedCourses.add(randomCourse(courses));
         }
 
-        return new Player("Mr.Player", rooms.getFirst(), courses);
+        return new Player("Mr.Player", rooms.get("2000"), completedCourses);
     }
 
-    public static Student randomStudent(LinkedList<Course> courses, LinkedList<String> names){
+    public static Student randomStudent(HashMap<String,Course> courses, LinkedList<String> names){
 
-	Course c1 = courses.get(randomWithRange(0,courses.size()-1));
-	Course c2 = courses.get(randomWithRange(0,courses.size()-1));
+	Course c1 = courses.get("000111");
+	Course c2 = courses.get("POTM123");
         while (c2==c1){
 	    c2 = courses.get(randomWithRange(0,courses.size()-1));
 	}
@@ -151,7 +159,7 @@ public class Parser{
 	return new Student(n ,c1 ,c2);
     }
 
-    public static Teacher randomTeacher(LinkedList<Course> courses, LinkedList<String> names){
+    public static Teacher randomTeacher(HashMap<String,Course> courses, LinkedList<String> names){
 	Course c = courses.get(randomWithRange(0,courses.size()-1));
 	String n = names.get(randomWithRange(0,courses.size()-1));
 	return new Teacher(n , c);
@@ -168,8 +176,8 @@ public class Parser{
 	return (int)(Math.random() * range) + min;
     }
 
-
-    public static Course randomCourse(LinkedList<Course> courses){
+    
+    public static Course randomCourse(HashMap<String,Course> courses){
         int size = courses.size();
 
 	if(size == 0){
@@ -178,7 +186,7 @@ public class Parser{
 
         Random random = new Random();
         int randomCourse = random.nextInt(size);
-	return courses.get(randomCourse);
+	return courses.get("000111");
     }
 
 }
