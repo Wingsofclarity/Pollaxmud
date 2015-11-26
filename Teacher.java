@@ -17,6 +17,7 @@ public class Teacher extends NPC{
     @Override
     public void interact(){
 	if (c==null) return;
+	System.out.println("I am a teacher. Here comes a question.");
 	c.ask();
     }
 
@@ -24,4 +25,5 @@ public class Teacher extends NPC{
     public String toString(){
 	return "Teacher: "+super.toString();
     }
+    
 }

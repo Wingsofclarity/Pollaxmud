@@ -5,27 +5,29 @@ import java.util.*;
 
 public class World{
     //File map;
-    private LinkedList<Creature> creatures;
+    private LinkedList<NPC> NPCs;
     private LinkedList<Room> rooms;
     private LinkedList<Connection> connections;
     private LinkedList<Course> courses;
+    private LinkedList<String> names;
     public Player player;
     
     World(){
     }
 
-    World(FileReader roomFile, FileReader creatureFile, FileReader connectionFile,
-	  FileReader courseFile, FileReader questionFile){
+    World(FileReader roomFile, FileReader NPCFile, FileReader connectionFile,
+	  FileReader courseFile, FileReader questionFile, FileReader nameFile){
+	names = Parser.parseName(nameFile);
 	rooms = Parser.parseRoom(roomFile);
 	courses = Parser.parseCourse(courseFile);
-	creatures = Parser.parseCreature(creatureFile, courses);
+	NPCs = Parser.parseNPC(NPCFile, courses, names);
 	connections = Parser.parseConnection(connectionFile, rooms);
 	player = Parser.parsePlayer(rooms, courses);
 	Parser.parseQuestion(questionFile, courses);
     }
     
-    public LinkedList<Creature> getCreatures(){
-	return creatures;
+    public LinkedList<NPC> getNPCs(){
+	return NPCs;
     }
 
     /*
@@ -49,19 +51,19 @@ public class World{
 	return e;
     }
 
-    public LinkedList<Creature> getCreaturesRoom(Room r){
-	LinkedList<Creature> e = new LinkedList<Creature>();
-	for (int i = 0; i<creatures.size(); i++){
-	    if (creatures.get(i).getLocation().equals(r)){
-		e.add(creatures.get(i));
+    public LinkedList<NPC> getNPCsRoom(Room r){
+	LinkedList<NPC> e = new LinkedList<NPC>();
+	for (int i = 0; i<NPCs.size(); i++){
+	    if (NPCs.get(i).getLocation().equals(r)){
+		e.add(NPCs.get(i));
 	    }
 	}
 	return e;
     }
 
     public void interactAll(){
-	for (int i = 0; i<creatures.size(); i++){
-	    creatures.get(i).interact();
+	for (int i = 0; i<NPCs.size(); i++){
+	    NPCs.get(i).interact();
 	}
     }
 
@@ -85,34 +87,30 @@ public class World{
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	String s = r.toString();
-	s +="\n  Creatures: ";
-	for (int i = 0; i<creatures.size(); i++){
-	    if (r.equals(creatures.get(i).getLocation())){
-		s+=creatures.get(i).toString()+", ";
+	s +="\n  NPCs: ";
+	for (int i = 0; i<NPCs.size(); i++){
+	    if (r.equals(NPCs.get(i).getLocation())){
+		s+=NPCs.get(i).toString()+", ";
 	    }
 	}
 
 	s+= " it connects to ";
 	s+=getConnectedRooms(r).toString();
-	/*for (int i = 0; i<connections.size(); i++){
-	    if (connections.get(i).getRooms().contains(r)){
-		s+=" "+connections.get(i).connect(r).toString();
-	    }
-	    }*/
+	s+=" all creatures "+getNPCs().toString();
 	
 	return s;
     }
 
     @Override
     public String toString(){
-	return "Creatures \n" + toStringCreatures()+"\n\n"+
+	return "NPCs \n" + toStringNPCs()+"\n\n"+
 	    "Rooms \n"+toStringRooms()+"\n\n"+
 	    "Connections\n"+toStringConnections()+"\n\n"+
 	    "Courses\n"+toStringCourses();
     }
 
-    public String toStringCreatures(){
-	return creatures.toString();
+    public String toStringNPCs(){
+	return NPCs.toString();
     }
 
     public String toStringRooms(){

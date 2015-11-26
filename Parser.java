@@ -19,33 +19,47 @@ public class Parser{
 	}
     }
 
-    public static LinkedList<Creature> parseCreature(FileReader creatureFile, LinkedList<Course> courses){
+    public static LinkedList<String> parseName(FileReader nameFile){
+	LinkedList<String> names = new LinkedList<String>();
+	try(BufferedReader br = new BufferedReader(nameFile)) {
+	    for(String line; (line = br.readLine()) != null; ) {
+		names.add(line);
+	    }
+	    return names;
+	}
+	catch (IOException e){
+	    ErrorControl.error();
+	    return names;
+	}
+    }
+
+    public static LinkedList<NPC> parseNPC(FileReader NPCFile, LinkedList<Course> courses, LinkedList<String> names){
 
 	assert(courses.size()>1);
-	LinkedList<Creature> creatures = new LinkedList<Creature>();
-	try(BufferedReader br = new BufferedReader(creatureFile)) {
+	LinkedList<NPC> NPCs = new LinkedList<NPC>();
+	try(BufferedReader br = new BufferedReader(NPCFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 
 		switch (line){
 		case "randomStudent":
-		    creatures.add(randomStudent(courses));
+		    NPCs.add(randomStudent(courses, names));
 		    break;
 
 		case "randomTeacher":
-		    creatures.add(randomTeacher(courses));
+		    NPCs.add(randomTeacher(courses, names));
 		    break;
 
 		default:
 		    //TODO: Defensive programming
-		    creatures.add(new Student(line));
+		    NPCs.add(new Student(line));
 		    break;	
 		}
 	    }
-	    return creatures;
+	    return NPCs;
 	}
 	catch (IOException e){
 	    ErrorControl.error();
-	    return creatures;
+	    return NPCs;
 	}
 
     }
@@ -115,7 +129,6 @@ public class Parser{
     }
 
 
-
     public static Player parsePlayer (LinkedList<Room> rooms, LinkedList<Course> courses){
 
         LinkedList<Course> completedCourses = new LinkedList<>();
@@ -127,18 +140,21 @@ public class Parser{
         return new Player("Mr.Player", rooms.getFirst(), courses);
     }
 
-    public static Student randomStudent(LinkedList<Course> courses){
+    public static Student randomStudent(LinkedList<Course> courses, LinkedList<String> names){
+
 	Course c1 = courses.get(randomWithRange(0,courses.size()-1));
 	Course c2 = courses.get(randomWithRange(0,courses.size()-1));
         while (c2==c1){
 	    c2 = courses.get(randomWithRange(0,courses.size()-1));
 	}
-	return new Student("Studentguy",c1 ,c2);
+	String n = names.get(randomWithRange(0,courses.size()-1));
+	return new Student(n ,c1 ,c2);
     }
 
-    public static Teacher randomTeacher(LinkedList<Course> courses){
+    public static Teacher randomTeacher(LinkedList<Course> courses, LinkedList<String> names){
 	Course c = courses.get(randomWithRange(0,courses.size()-1));
-	return new Teacher("Teacherguy", c);
+	String n = names.get(randomWithRange(0,courses.size()-1));
+	return new Teacher(n , c);
     }
 
     public static Room randomRoom(){

@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Creature{
     protected String name;
-    protected LinkedList<Item> items;
     protected Room location;
 
     Creature(){
@@ -16,7 +15,6 @@ public class Creature{
     
     Creature(String name, Room room){
 	this.name=name;
-	items = new LinkedList<Item>();
 	location = room;
     }
 
@@ -39,47 +37,21 @@ public class Creature{
     public boolean equals(Object o){
 	assert(o instanceof Creature);
 	Creature c = (Creature) o;
-	return name.equals(c.name);
+	return name.toLowerCase().equals(c.name.toLowerCase());
     }
 
-    public void removeItem(Item i){
-	ErrorControl.error();
-    }
-
-    public void addItem(Item i){
-	ErrorControl.error();
-    }
-
-    public LinkedList<Item> getItems(){
-	ErrorControl.error();
-	return items;
+    public String getName(){
+	return name;
     }
     
     public String toString(){
-	return name+" is at "+location()+", has"+getItems().toString();
+	return name+" is at "+location();
     }
     
     @Override
     public int hashCode(){
 	ErrorControl.error();
 	return -1;
-    }
-
-    /*
-    public void interact(Creature c){
-	ErrorControl.error();
-	}*/
-
-    public void chat(){
-	System.out.println("I'm "+this.toString());
-    }
-
-    public void interact(){
-	this.chat();
-    }
-
-    public String toStringItems(){
-	return items.toString();
     }
 }
 
