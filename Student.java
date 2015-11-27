@@ -1,22 +1,15 @@
 public class Student extends NPC{
     Course completedC;
     Course currentC;
-
-    Student(){
-	this("Studentguy");
-    }
-
-    Student(String name){
-	this(name ,new Course("whatever"), new Course("whatever2"));
-    }
     
-    Student(String name, Course completed, Course current){
-	super(name);
+    Student(String name, Room room, Course completed, Course current){
+	super(name, room);
 	assert(!completed.equals(current));
 	this.completedC=completed;
 	this.currentC=current;
     }
 
+    @Override
     public String toString(){
 	return "Student: "+super.toString();
     }

@@ -20,7 +20,7 @@ public class World{
 	names = Parser.parseName(nameFile);
 	rooms = Parser.parseRoom(roomFile);
 	courses = Parser.parseCourse(courseFile);
-	NPCs = Parser.parseNPC(NPCFile, courses, names);
+	NPCs = Parser.parseNPC(NPCFile, courses, rooms, names);
 	connections = Parser.parseConnection(connectionFile, rooms);
 	player = Parser.parsePlayer(rooms, courses);
 	Parser.parseQuestion(questionFile, courses);

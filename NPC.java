@@ -1,5 +1,9 @@
 public abstract class NPC extends Creature{
 
+    NPC(String name, Room room){
+	super(name, room);
+    }
+
     NPC(String name){
 	super(name);
     }

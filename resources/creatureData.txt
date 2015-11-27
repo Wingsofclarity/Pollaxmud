@@ -12,4 +12,4 @@ randomTeacher
 randomTeacher
 randomTeacher
 randomStudent
-
+student, bertil, 2100, 000111, PMF01

@@ -34,18 +34,19 @@ public class Parser{
 	}
     }
 
-    public static HashMap<String, NPC> parseNPC(FileReader NPCFile, HashMap<String,Course> courses, LinkedList<String> names){
+    public static HashMap<String, NPC> parseNPC(FileReader NPCFile, HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
 
 	assert(courses.size()>1);
 	HashMap<String, NPC> NPCs = new HashMap<String, NPC>();
 	try(BufferedReader br = new BufferedReader(NPCFile)) {
 
 	    for(String line; (line = br.readLine()) != null;){
-		switch (line){
+		String[] devided = line.split(", ");
+		switch (devided[0]){
 		case "randomStudent":{
-		    Student s = randomStudent(courses, names);
+		    Student s = randomStudent(courses,rooms, names);
 		    while (NPCs.containsKey(s.getName())){
-			s = randomStudent(courses, names);
+			s = randomStudent(courses,rooms, names);
 		    }
 		    NPCs.put(s.getName(), s);
 		    break;
@@ -60,10 +61,21 @@ public class Parser{
 		    break;
 		}
 
+		case "student":{
+		    String name = devided[1];
+		    Room r = rooms.get(devided[2]);
+		    Course c1 = courses.get(devided[3]);
+		    Course c2= courses.get(devided[4]);
+		    NPCs.put(name, new Student(name, r, c1, c2));
+		    break;
+		}
+
 		default:{
-		    //TODO: Defensive programming
-		    Student s2 = new Student(line);
-		    NPCs.put(s2.getName(), s2);
+		    String name = devided[1];
+		    Room r = rooms.get(devided[2]);
+		    Course c1 = courses.get(devided[3]);
+		    Course c2= courses.get(devided[4]);
+		    NPCs.put(name, new Student(name, r, c1, c2));
 		    break;
 		}
 		}
@@ -159,7 +171,8 @@ public class Parser{
         return new Player("Mr.Player", randomRoom, completedCourses);
     }
 
-    public static Student randomStudent(HashMap<String,Course> courses, LinkedList<String> names){
+    public static Student randomStudent(HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
+	String n = names.get(randomWithRange(0,names.size()-1));
 	Random generator = new Random();
 	Object[] values =  courses.values().toArray();
 	Course c1 = (Course) values[generator.nextInt(values.length)];
@@ -167,8 +180,10 @@ public class Parser{
         while (c2.equals(c1)){
 	    c2 = (Course) values[generator.nextInt(values.length)];
 	}
-	String n = names.get(randomWithRange(0,names.size()-1));
-	return new Student(n ,c1 ,c2);
+
+	Object[] roomsArray = rooms.values().toArray();
+	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
+	return new Student(n ,r,c1 ,c2);
     }
 
     public static Teacher randomTeacher(HashMap<String,Course> courses, LinkedList<String> names){
