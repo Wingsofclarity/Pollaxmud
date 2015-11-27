@@ -9,8 +9,8 @@ public class Control{
     }
 
     public void scan(){
-        String input = System.console().readLine().toLowerCase();
-	input = input.toLowerCase();
+        String input = System.console().readLine();
+	//input = input.toLowerCase();
         String[] parts = input.split(" ");
         String command = parts[0];
 	String attribute = null;
@@ -34,6 +34,14 @@ public class Control{
 	case "exit":
 	    exit();
 	    break;
+
+	case "graduate":
+	    graduate();
+	    break;
+
+	default:
+	    System.out.println("Unknown command '"+input+"'");
+	    break;
 	}
     }
 
@@ -47,16 +55,32 @@ public class Control{
 
     public void chooseDirection(String direction){
 	Room r = world.getRooms().get(direction);
-	if (world.getConnectedRooms(player.getLocation()).contains(r)){
-	    //Cheat
-	    player.move(r);
-	    System.out.println("I just entered a new room.\n");
-	    description();
+	if (r == null){
+	    System.out.println("No such room.");
+	}
+	else if (world.getConnectedRooms(player.getLocation()).contains(r)){
+	    Connection c = world.getConnection(player.getLocation(), r);
+	    if (c.isUnlocked()){
+		player.move(r);
+		System.out.println("I just entered a new room.\n");
+		description();
+	    }
+	    else if (c.isLocked()){
+		System.out.println("Door is locked.\n");
+	    }
+	}
+	else {
+	    System.out.println("No such adjacent room.");
 	}
     }
 
     public void exit(){
 	exit=true;
+    }
+
+    public void graduate(){
+	Sphinx sphinx = (Sphinx) world.getNPCs().get("sphinx");
+	sphinx.graduate(player);
     }
 
     /*   public void move(String direction) {

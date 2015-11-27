@@ -1,9 +1,9 @@
 import java.util.*;
 public class Course{
-    String name;
-    String id;
-    LinkedList<Question> questions;
-    int hp;
+    private String name;
+    private String id;
+    private LinkedList<Question> questions;
+    private int hp;
 
     Course(){
 	this("NotMath");
@@ -28,7 +28,7 @@ public class Course{
     }
 
     public void ask(){
-
+	System.out.println("---"+name+"---");
 	getRandQuestion().run();
     }
 

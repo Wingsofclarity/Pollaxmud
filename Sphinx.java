@@ -1,7 +1,6 @@
 public class Sphinx extends NPC{
-    
-    Sphinx(){
-	super("The Sphinx");
+    Sphinx(Room room){
+	super("sphinx",room);
     }
     
     public void chat(){
@@ -25,7 +24,7 @@ public class Sphinx extends NPC{
             System.out.println("You need 180 hp in order to graduate. You lack " + (180-p.getHp()) + " hp.");
             return false;
         }
-        else{
+        else{ // TODO: logical error, branch never taken.
             System.out.println("You have "+ number + " unfinished courses and less than 180 hp. Be gone!");
             return false;}
     }

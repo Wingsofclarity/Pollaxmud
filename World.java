@@ -95,6 +95,10 @@ public class World{
 	return r.getDescription()+" Creatures called "+getNPCsRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
 
+    public Connection getConnection(Room a, Room b){
+	return connections.get(connections.indexOf(new Connection(a,b)));
+    }
+    
     @Override
     public String toString(){
 	return "NPCs \n" + toStringNPCs()+"\n\n"+
@@ -102,6 +106,8 @@ public class World{
 	    "Connections\n"+toStringConnections()+"\n\n"+
 	    "Courses\n"+toStringCourses();
     }
+
+
 
     public String toStringNPCs(){
 	return NPCs.toString();

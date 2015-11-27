@@ -41,9 +41,10 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(NPCFile)) {
 
 	    for(String line; (line = br.readLine()) != null;){
+		//line=line.toLowerCase();
 		String[] devided = line.split(", ");
 		switch (devided[0]){
-		case "randomStudent":{
+		case "randomstudent":{
 		    Student s = randomStudent(courses,rooms, names);
 		    while (NPCs.containsKey(s.getName())){
 			s = randomStudent(courses,rooms, names);
@@ -52,7 +53,7 @@ public class Parser{
 		    break;
 		}
 
-		case "randomTeacher":{
+		case "randomteacher":{
 		    Teacher t = randomTeacher(courses, names);
 		    while (NPCs.containsKey(t.getName())){
 			t = randomTeacher(courses, names);
@@ -65,8 +66,21 @@ public class Parser{
 		    String name = devided[1];
 		    Room r = rooms.get(devided[2]);
 		    Course c1 = courses.get(devided[3]);
-		    Course c2= courses.get(devided[4]);
+		    Course c2 = courses.get(devided[4]);
 		    NPCs.put(name, new Student(name, r, c1, c2));
+		    break;
+		}
+
+		case "sphinx":{
+		    if(devided[1].equals("random")){
+			Sphinx s = randomSphinx(rooms);
+			NPCs.put(s.getName(), s);
+		    }
+		    else{
+			Room r = rooms.get(devided[1]);
+			Sphinx s = new Sphinx(r);
+			NPCs.put(s.getName(), s);
+		    }
 		    break;
 		}
 
@@ -95,7 +109,6 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-
 		//TODO: Defensive programming
 		Room r1 = rooms.get(devided[0]);
 		Room r2 = rooms.get(devided[1]);
@@ -183,7 +196,7 @@ public class Parser{
 
 	Object[] roomsArray = rooms.values().toArray();
 	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
-	return new Student(n ,r,c1 ,c2);
+	return new Student(n, r, c1, c2);
     }
 
     public static Teacher randomTeacher(HashMap<String,Course> courses, LinkedList<String> names){
@@ -214,6 +227,13 @@ public class Parser{
         Random random = new Random();
         int randomCourse = random.nextInt(size);
 	return courses.get("000111");
+    }
+
+    public static Sphinx randomSphinx(HashMap<String,Room> rooms){
+	Random generator = new Random();
+	Object[] roomsArray = rooms.values().toArray();
+	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
+	return new Sphinx(r);
     }
 
 }

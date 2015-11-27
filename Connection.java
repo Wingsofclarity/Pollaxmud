@@ -9,7 +9,7 @@ public class Connection{
 	    this.s = s;
 	}
     }
-    Access access = Access.Closed;
+    Access access = Access.Unlocked;
     Room room1;
     Room room2;
     
@@ -32,6 +32,25 @@ public class Connection{
 	}
     }
 
+    public boolean connect(Creature creature){
+	Room room = connect(creature.getLocation());
+	if (access == Access.Locked){
+	    return false;
+	}
+	else if (room.equals(room1)){
+	    creature.move(room2);
+	    return true;
+	}
+	else if (room.equals(room2)){
+	    creature.move(room1);
+	    return true;
+	}
+	else {
+	    ErrorControl.error();
+	    return false;
+	}
+    }
+
     public LinkedList<Room> getRooms(){
 	LinkedList<Room> list = new LinkedList<Room>();
 	list.add(room1);
@@ -42,7 +61,8 @@ public class Connection{
     public boolean equals(Object o){
 	assert(o instanceof Connection);
 	Connection con = (Connection) o;
-	return getRooms().equals(con.getRooms());
+	return ((room1.equals(con.room1) && room2.equals(con.room2)) ||
+		room1.equals(con.room2) && room2.equals(con.room1));
     }
 
     public void setAccess(Access a){
@@ -68,6 +88,14 @@ public class Connection{
 	    ErrorControl.error();
 	    break;
 	}
+    }
+
+    public boolean isUnlocked(){
+	return (access==Access.Unlocked);
+    }
+
+    public boolean isLocked(){
+	return (access==Access.Locked);
     }
 
     public String toString(){
