@@ -65,6 +65,7 @@ public class Parser{
 			break;
 		    }
 
+
 		    case "randomteacher":{
 			Teacher t = randomTeacher(courses,rooms, names);
 			while (NPCs.containsKey(t.getName())){
@@ -72,6 +73,7 @@ public class Parser{
 			}
 			NPCs.put(t.getName(), t);
 			break;
+
 		    }
 
 		    case "student":{
@@ -245,13 +247,16 @@ public class Parser{
     }
 
     public static Teacher randomTeacher(HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
-	Course c = randomCourse(courses);
-	String n = names.get(randomWithRange(0,names.size()-1));
 
+	Course c = randomCourse(courses);
+	Object[] values =  courses.values().toArray();
+	
+	String n = names.get(randomWithRange(0,names.size()-1));
 	Random generator = new Random();
 	Object[] roomsArray = rooms.values().toArray();
 	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
 	return new Teacher(n, r, c);
+
     }
 
     public static Room randomRoom(){

@@ -3,8 +3,12 @@ public class Teacher extends NPC{
     
     Teacher(String name, Room room, Course c){
 	super(name, room);
+
 	assert(c!=null);
+
 	this.c = c;
+
+
     }
 
     @Override
