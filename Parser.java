@@ -249,16 +249,15 @@ public class Parser{
 
     public static Teacher randomTeacher(HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
 
-	Course c = courses.get(randomWithRange(0,courses.size()-1));
+	Course c = randomCourse(courses);
+	Object[] values =  courses.values().toArray();
+	
 	String n = names.get(randomWithRange(0,names.size()-1));
-
-	//Object[] roomsArray = rooms.values().toArray();
-	Room r = rooms.get("2001");
-	//rooms.get(randomWithRange(0,rooms.size()-1));
-	//(Room) roomsArray[generator.nextInt(roomsArray.length)];
-
-
+	Random generator = new Random();
+	Object[] roomsArray = rooms.values().toArray();
+	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
 	return new Teacher(n, r, c);
+
     }
 
     public static Room randomRoom(){

@@ -7,7 +7,7 @@ public class Teacher extends NPC{
 	assert(c!=null);
 
 	this.c = c;
-	System.out.println("A new teacher is born.");
+
 
     }
 
