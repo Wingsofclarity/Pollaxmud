@@ -9,8 +9,13 @@ public class Parser{
 	HashMap<String,Room> rooms = new HashMap<String,Room>();
 	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		Room r = new Room(line);
-		rooms.put(r.getName(), r);
+		 if (line==""){
+		    //Nothing;
+		}
+		 else {
+		     Room r = new Room(line);
+		     rooms.put(r.getName(), r);
+		 }
 	    }
 	    return rooms;
 	}
@@ -24,7 +29,12 @@ public class Parser{
 	LinkedList<String> names = new LinkedList<String>();
 	try(BufferedReader br = new BufferedReader(nameFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		names.add(line);
+		if (line==""){
+		    
+		}
+		else {
+		    names.add(line);
+		}
 	    }
 	    return names;
 	}
@@ -41,57 +51,62 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(NPCFile)) {
 
 	    for(String line; (line = br.readLine()) != null;){
-		//line=line.toLowerCase();
 		String[] devided = line.split(", ");
-		switch (devided[0]){
-		case "randomstudent":{
-		    Student s = randomStudent(courses,rooms, names);
-		    while (NPCs.containsKey(s.getName())){
-			s = randomStudent(courses,rooms, names);
-		    }
-		    NPCs.put(s.getName(), s);
-		    break;
-		}
+		System.out.println(line);
+		if (line==""){
 
-		case "randomteacher":{
-		    Teacher t = randomTeacher(courses, names);
-		    while (NPCs.containsKey(t.getName())){
-			t = randomTeacher(courses, names);
-		    }
-		    NPCs.put(t.getName(), t);
-		    break;
 		}
-
-		case "student":{
-		    String name = devided[1];
-		    Room r = rooms.get(devided[2]);
-		    Course c1 = courses.get(devided[3]);
-		    Course c2 = courses.get(devided[4]);
-		    NPCs.put(name, new Student(name, r, c1, c2));
-		    break;
-		}
-
-		case "sphinx":{
-		    if(devided[1].equals("random")){
-			Sphinx s = randomSphinx(rooms);
+		else{
+		    switch (devided[0]){
+		    case "randomstudent":{
+			Student s = randomStudent(courses,rooms, names);
+			while (NPCs.containsKey(s.getName())){
+			    s = randomStudent(courses,rooms, names);
+			}
 			NPCs.put(s.getName(), s);
+			break;
 		    }
-		    else{
-			Room r = rooms.get(devided[1]);
-			Sphinx s = new Sphinx(r);
-			NPCs.put(s.getName(), s);
-		    }
-		    break;
-		}
 
-		default:{
-		    String name = devided[1];
-		    Room r = rooms.get(devided[2]);
-		    Course c1 = courses.get(devided[3]);
-		    Course c2= courses.get(devided[4]);
-		    NPCs.put(name, new Student(name, r, c1, c2));
-		    break;
-		}
+		    case "randomteacher":{
+			Teacher t = randomTeacher(courses,rooms, names);
+			while (NPCs.containsKey(t.getName())){
+			    t = randomTeacher(courses,rooms, names);
+			}
+			NPCs.put(t.getName(), t);
+			break;
+		    }
+
+		    case "student":{
+			String name = devided[1];
+			Room r = rooms.get(devided[2]);
+			Course c1 = courses.get(devided[3]);
+			Course c2 = courses.get(devided[4]);
+			NPCs.put(name, new Student(name, r, c1, c2));
+			break;
+		    }
+
+		    case "sphinx":{
+			if (devided.length==1){
+			    Sphinx s = randomSphinx(rooms);
+			    NPCs.put(s.getName(), s);
+			}
+			else if(devided[1].equals("random")){
+			    Sphinx s = randomSphinx(rooms);
+			    NPCs.put(s.getName(), s);
+			}
+			else{
+			    Room r = rooms.get(devided[1]);
+			    Sphinx s = new Sphinx(r);
+			    NPCs.put(s.getName(), s);
+			}
+			break;
+		    }
+
+		    default:{
+			System.out.println("Creature missmatch line: "+line);
+			break;
+		    }
+		    }
 		}
 	    }
 	    return NPCs;
@@ -109,14 +124,21 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		//TODO: Defensive programming
-		Room r1 = rooms.get(devided[0]);
-		Room r2 = rooms.get(devided[1]);
-		Connection con = new Connection(r1,r2);
-		if (devided.length>2){
-		    con.setAccess(devided[2]);
+		if (line==""){
+		    //Nothing
 		}
-		connections.add(con);
+		else if (devided.length==2 || devided.length==3){
+		    Room r1 = rooms.get(devided[0]);
+		    Room r2 = rooms.get(devided[1]);
+		    Connection con = new Connection(r1,r2);
+		    if (devided.length==3){
+			con.setAccess(devided[2]);
+		    }
+		    connections.add(con);
+		}
+		else {
+		    System.out.println("Connection missmatch for line: "+line);
+		}
 	    }
 	    return connections;
 	}
@@ -131,11 +153,16 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		//TODO: Defensive programming
-		assert(devided.length==3);
-		Course c = new Course(devided[1], devided[0], Integer.parseInt(devided[2]));
-		assert(!courses.containsKey(c.getId()));
-		courses.put(c.getId(),c);
+		if (line==""){
+		}
+		else if (devided.length!=3){
+		    System.out.println("Course missmatch for line: "+line);
+		}
+		else {
+		    Course c = new Course(devided[1], devided[0], Integer.parseInt(devided[2]));
+		    assert(!courses.containsKey(c.getId()));
+		    courses.put(c.getId(),c);
+		}
 		
 	    }
 	    return courses;
@@ -150,13 +177,19 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(questionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		assert(devided.length==7);
-		//TODO: Defensive programming
-		LinkedList<String> answers = new LinkedList<String>();
-		for (int i = 2; i<=5; i++){
-		    answers.add(devided[i]);
+		if (devided.length==7){
+		    LinkedList<String> answers = new LinkedList<String>();
+		    for (int i = 2; i<=5; i++){
+			answers.add(devided[i]);
+		    }
+		    courses.get(devided[0]).addQuestion(devided[1], answers, Integer.parseInt(devided[6]));
 		}
-		courses.get(devided[0]).addQuestion(devided[1], answers, Integer.parseInt(devided[6]));
+		else if (line==""){
+		    //Nothing;
+		}
+		else {
+		    System.out.println("Question missmatch for line: "+line);
+		}
 	    }
 	    return;
 	}
@@ -199,10 +232,14 @@ public class Parser{
 	return new Student(n, r, c1, c2);
     }
 
-    public static Teacher randomTeacher(HashMap<String,Course> courses, LinkedList<String> names){
-	Course c = courses.get(randomWithRange(0,courses.size()-1));
+    public static Teacher randomTeacher(HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
+	Course c = randomCourse(courses);
 	String n = names.get(randomWithRange(0,names.size()-1));
-	return new Teacher(n , c);
+
+	Random generator = new Random();
+	Object[] roomsArray = rooms.values().toArray();
+	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
+	return new Teacher(n, r, c);
     }
 
     public static Room randomRoom(){
@@ -235,5 +272,4 @@ public class Parser{
 	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
 	return new Sphinx(r);
     }
-
 }

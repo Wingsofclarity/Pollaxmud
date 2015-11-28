@@ -1,3 +1,4 @@
+import java.util.*;
 public class Control{
     Player player;
     World world;
@@ -8,8 +9,12 @@ public class Control{
 	this.world = world;
     }
 
-    public void scan(){
-        String input = System.console().readLine();
+    public String scan(){
+	return System.console().readLine();
+    }
+
+    public void command(){
+	String input = scan();
 	//input = input.toLowerCase();
         String[] parts = input.split(" ");
         String command = parts[0];
@@ -39,6 +44,10 @@ public class Control{
 	    graduate();
 	    break;
 
+	case "cheat":
+	    System.out.println(world);
+	    break;
+	    
 	default:
 	    System.out.println("Unknown command '"+input+"'");
 	    break;
@@ -46,7 +55,13 @@ public class Control{
     }
 
     public void interact(String name){
-	world.getNPCs().get(name).interact();
+	HashMap<String, NPC> NPCs = world.getNPCsRoom(player.getLocation());
+	if (NPCs.containsKey(name)){
+	    NPCs.get(name).interact(player);
+	}
+	else {
+	    System.out.println(name+" is not present.");
+	}
     }
 
     public void description(){

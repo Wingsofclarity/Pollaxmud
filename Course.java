@@ -27,6 +27,14 @@ public class Course{
 	return id.equals(c.id);
     }
 
+    public String getName(){
+	return name;
+    }
+
+    public int getHp(){
+	return hp;
+    }
+    
     public void ask(){
 	System.out.println("---"+name+"---");
 	getRandQuestion().run();
