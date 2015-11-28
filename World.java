@@ -51,8 +51,8 @@ public class World{
 	return e;
     }
 
-    public LinkedList<NPC> getNPCsRoom(Room r){
-	LinkedList<NPC> e = new LinkedList<NPC>();
+    public HashMap<String, NPC> getNPCsRoom(Room r){
+	HashMap<String, NPC> e = new HashMap<String, NPC>();
 	Object[] array = NPCs.values().toArray();
 	for (int i = 0; i<array.length; i++){
 	    NPC element = (NPC) array[i];
@@ -60,17 +60,11 @@ public class World{
 		
 	    }
 	    else if (element.getLocation().equals(r)){
-		e.add(element);
+		e.put(element.getName(), element);
 	    }
 	}
 	return e;
     } 
-
-    public void interactAll(){
-	for (int i = 0; i<NPCs.size(); i++){
-	    NPCs.get(i).interact();
-	}
-    }
 
     public LinkedList<Room> getUnreachable(){
 	LinkedList<Room> r = new LinkedList<Room>();
@@ -101,6 +95,7 @@ public class World{
     
     @Override
     public String toString(){
+	System.out.println("Trace");
 	return "NPCs \n" + toStringNPCs()+"\n\n"+
 	    "Rooms \n"+toStringRooms()+"\n\n"+
 	    "Connections\n"+toStringConnections()+"\n\n"+

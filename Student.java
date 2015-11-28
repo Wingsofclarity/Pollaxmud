@@ -15,7 +15,7 @@ public class Student extends NPC{
     }
 
     @Override
-    public void interact(){
+    public void interact(Player player){
 	System.out.println(completedC.getQuestion());
     }
 }

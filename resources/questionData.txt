@@ -6,4 +6,6 @@ PMF01, Category: Java. Which of the following English words are not French or La
 PMF01, Category: Object-oriented languages. Which of the following English words are not French or Latin?, object, oriented, language, none, 3
 PMF01, Category: PollaxMUD. Which of the following English words are not French?, course, dungeon, student, none, 3
 PMF01, Category: Programming. Which of the following English words are not French?, abstraction, function, program, none, 3
+
+
 PMF01, Category: Software development methods. Which of the following English words are not French?, agile, simple, development and method, none, 3

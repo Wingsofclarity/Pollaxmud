@@ -99,9 +99,7 @@ public class Connection{
     }
 
     public String toString(){
-	ErrorControl.error();
-	room1.toString();
-	return room1.toString()+" <-> "+room2.toString()+". "+access.toString();
+	return room1.toString()+" <-> "+room2.toString()+" = "+access.toString()+". ";
     }
 
     public String toStringAccess(){
