@@ -1,4 +1,4 @@
-student, bertil, 2100, 000111, PMF01
+student, Bertil, 2100, 000111, PMF01
 randomstudent
 randomstudent
 randomstudent
@@ -6,6 +6,22 @@ randomstudent
 randomstudent
 randomstudent
 randomstudent
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
+randomteacher
 randomteacher
 randomteacher
 randomteacher

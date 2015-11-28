@@ -15,6 +15,16 @@ public class Pollaxmud{
 	    Control control = new Control(poll.player, poll);
 	    while (true){
 		System.out.print("Awaiting input..");
+	
+		//Utskrifter för att se om det finns lärare.
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2000")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2001")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2002")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2100")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2101")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2102")).toString());
+		System.out.print(poll.getNPCsRoom(poll.getRooms().get("2103")).toString());
+
 		control.scan();
 		if (control.exit){
 		    System.out.println(poll);

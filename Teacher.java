@@ -9,9 +9,11 @@ public class Teacher extends NPC{
 	this(name, null);
     }
     
-    Teacher(String name, Course c){
-	super(name);
+    Teacher(String name, Room room, Course c){
+	super(name, room);
 	this.c = c;
+	System.out.println("A new teacher is born.");
+
     }
 
     @Override
