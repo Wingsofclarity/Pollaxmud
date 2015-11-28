@@ -1,4 +1,5 @@
 student, bertil, 2100, 000111, PMF01
+teacher, bertili, 2100, 000111
 randomstudent
 randomstudent
 randomstudent

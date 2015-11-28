@@ -52,7 +52,6 @@ public class Parser{
 
 	    for(String line; (line = br.readLine()) != null;){
 		String[] devided = line.split(", ");
-		System.out.println(line);
 		if (line==""){
 
 		}
@@ -77,11 +76,25 @@ public class Parser{
 		    }
 
 		    case "student":{
+			if (devided.length!=5){
+			    break;
+			}
 			String name = devided[1];
 			Room r = rooms.get(devided[2]);
 			Course c1 = courses.get(devided[3]);
 			Course c2 = courses.get(devided[4]);
 			NPCs.put(name, new Student(name, r, c1, c2));
+			break;
+		    }
+
+		    case "teacher":{
+			if (devided.length!=4){
+			    break;
+			}
+			String name = devided[1];
+			Room r = rooms.get(devided[2]);
+			Course c1 = courses.get(devided[3]);
+			NPCs.put(name, new Teacher(name, r, c1));
 			break;
 		    }
 
@@ -263,7 +276,8 @@ public class Parser{
 
         Random random = new Random();
         int randomCourse = random.nextInt(size);
-	return courses.get("000111");
+	Object[] coursesArray = courses.values().toArray();
+	return (Course) coursesArray[randomCourse];
     }
 
     public static Sphinx randomSphinx(HashMap<String,Room> rooms){

@@ -25,7 +25,7 @@ public class Teacher extends NPC{
 
     @Override
     public String toString(){
-	return "Teacher: "+super.toString();
+	return "Teacher: "+super.toString()+" "+c.getName();
     }
     
 }
