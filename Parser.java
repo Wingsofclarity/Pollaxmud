@@ -9,7 +9,7 @@ public class Parser{
 	HashMap<String,Room> rooms = new HashMap<String,Room>();
 	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		 if (line==""){
+		if (line.equals("")){
 		    //Nothing;
 		}
 		 else {
@@ -29,7 +29,7 @@ public class Parser{
 	LinkedList<String> names = new LinkedList<String>();
 	try(BufferedReader br = new BufferedReader(nameFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
-		if (line==""){
+		if (line.equals("")){
 		    
 		}
 		else {
@@ -52,8 +52,7 @@ public class Parser{
 
 	    for(String line; (line = br.readLine()) != null;){
 		String[] devided = line.split(", ");
-		if (line==""){
-
+		if (line.equals("")){
 		}
 		else{
 		    switch (devided[0]){
@@ -137,7 +136,7 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(connectionFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		if (line==""){
+		if (line.equals("")){
 		    //Nothing
 		}
 		else if (devided.length==2 || devided.length==3){
@@ -166,10 +165,10 @@ public class Parser{
 	try(BufferedReader br = new BufferedReader(courseFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		String[] devided = line.split(", ");
-		if (line==""){
+		if (line.equals("")){
 		}
 		else if (devided.length!=3){
-		    System.out.println("Course missmatch for line: "+line);
+		    System.out.println("Course missmatch for line: \n"+line);
 		}
 		else {
 		    Course c = new Course(devided[1], devided[0], Integer.parseInt(devided[2]));
@@ -197,7 +196,7 @@ public class Parser{
 		    }
 		    courses.get(devided[0]).addQuestion(devided[1], answers, Integer.parseInt(devided[6]));
 		}
-		else if (line==""){
+		else if (line.equals("")){
 		    //Nothing;
 		}
 		else {
