@@ -1,5 +1,9 @@
 POTM123, How many potatoes are there in a bowl with 3 potatoes?, None, Many, A lot, Some, 3
+POTM123, If the potatoe king of married the tomatoe queen, what would their children be like?, Blue Congo, Raspana, Mangapple, Pomatoe, 3
+
 QQQ222, Which of the following statments is true?, Newton dropped on apple, Apple dropped on Newton, Apple dropped on apple, Newton dropped on Newton, 1
+QQQ222, What deos the "P" in Physics stand for?, Physic, Physician, Phone, Phun, 3
+
 000111, What is your favorite colour?, Green, Parrot, Winston Churchill, Both, 0
 PMF01, Category: Computers. Which of the following English words are not French?, cache, memory, computer, none, 3
 PMF01, Category: Java. Which of the following English words are not French or Latin?, attribute, class, constructor, none, 3
