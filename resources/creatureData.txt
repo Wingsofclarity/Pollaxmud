@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 student, Bertil, 2100, 000111, PMF01
-=======
-student, bertil, 2100, 000111, PMF01
-teacher, bertili, 2100, 000111
->>>>>>> 162a55fe3265e4a19f0822933cdd53fe8265d895
 randomstudent
 randomstudent
 randomstudent
@@ -21,7 +16,6 @@ randomteacher
 randomteacher
 randomteacher
 randomteacher
-<<<<<<< HEAD
 randomteacher
 randomteacher
 randomteacher
@@ -34,6 +28,4 @@ randomteacher
 randomteacher
 randomteacher
 randomteacher
-=======
->>>>>>> 162a55fe3265e4a19f0822933cdd53fe8265d895
 sphinx, 2102

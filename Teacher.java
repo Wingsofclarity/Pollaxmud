@@ -3,10 +3,9 @@ public class Teacher extends NPC{
     
     Teacher(String name, Room room, Course c){
 	super(name, room);
-<<<<<<< HEAD
-=======
+
 	assert(c!=null);
->>>>>>> 162a55fe3265e4a19f0822933cdd53fe8265d895
+
 	this.c = c;
 	System.out.println("A new teacher is born.");
 

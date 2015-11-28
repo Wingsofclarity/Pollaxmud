@@ -1,11 +1,9 @@
 POTM123, How many potatoes are there in a bowl with 3 potatoes?, None, Many, A lot, Some, 3
 QQQ222, Which of the following statments is true?, Newton dropped on apple, Apple dropped on Newton, Apple dropped on apple, Newton dropped on Newton, 1
 000111, What is your favorite colour?, Green, Parrot, Winston Churchill, Both, 0
-PMF01, Category: Computers. Which of the following English words are not French?, cache, memory, computer, none, 3
-PMF01, Category: Java. Which of the following English words are not French or Latin?, attribute, class, constructor, none, 3
-PMF01, Category: Object-oriented languages. Which of the following English words are not French or Latin?, object, oriented, language, none, 3
-PMF01, Category: PollaxMUD. Which of the following English words are not French?, course, dungeon, student, none, 3
-PMF01, Category: Programming. Which of the following English words are not French?, abstraction, function, program, none, 3
-
-
-PMF01, Category: Software development methods. Which of the following English words are not French?, agile, simple, development and method, none, 3
+PMF01, Category: Computers. Which of the following English words are not loanwords from French?, cache, memory, computer, none, 3
+PMF01, Category: Java. Which of the following English words are not loanwords from French or Latin?, attribute, class, constructor, none, 3
+PMF01, Category: Object-oriented languages. Which of the following English words are not loanwords from French or Latin?, object, oriented, language, none, 3
+PMF01, Category: PollaxMUD. Which of the following English words are not loanwords from French?, course, dungeon, student, none, 3
+PMF01, Category: Programming. Which of the following English words are not loanwords from French?, abstraction, function, program, none, 3
+PMF01, Category: Software development methods. Which of the following English words are not loanwords from French?, agile, simple, development and method, none, 3
