@@ -1,3 +1,4 @@
+import java.util.*;
 public class Teacher extends NPC{
     Course c;
     
@@ -19,37 +20,29 @@ public class Teacher extends NPC{
 
 	    //Not completed
 	    System.out.println("This is a course you have not completed.");
-<<<<<<< HEAD
-	    int r = c.ask();
-	    int a = Integer.parseInt(control.scan());
-	    while (a==-1){
-		System.out.println("Enter a number between 1-4");
-		a = Integer.parseInt(control.scan());
+	    int right = c.ask();
+	    String ans = control.scan();
+	    String[] options = new String[]{"a", "b", "c", "d"};
+
+	    while(!Arrays.asList(options).contains(ans)){
+		System.out.println("So, is it gonna be A, B, C or D?");
+		ans = System.console().readLine().toLowerCase();
 	    }
-	    if (r==(a-1)){
-		System.out.println("That was the correct answer.");
-		player.setHp(player.getHp()+1); 
-	    }
-	    else{
-		System.out.println("That was a wrong answer.");
-		player.setHp(player.getHp()-1);
-	    }
-=======
-	    boolean passed = c.ask();
-	    
-	    if (passed){
+
+	    if(0 == ans.compareTo(options[right])){
+		System.out.println("Good job! I'm proud of you. Soon you will be ready to enter the almighty realms and envåldsmakt of the Svenskt näringsliv!");
 		pass(player);
 	    }
-	    
-	   
->>>>>>> 2c8416838e62565aab2e4c49e681a2805d3e7681
+	    else{
+		System.out.println("Hmph, ridiculous... You have some more practicing to do, young person of unknown gender. Ah well, enjoy your freedom until the Arbetslivet gets hold of you!");
+	    }
 	}
 	
-	else if (!player.getCompletedCourses().contains(c)){
+	    else if (!player.getCompletedCourses().contains(c)){
 
-	    //Free course
-	    System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? y/n");
-	    if (control.ynQuestion()){
+		//Free course
+		System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? y/n");
+		if (control.ynQuestion()){
 		player.enroll(c);
 		System.out.println("Congrats, you are registered.");
 	    }
