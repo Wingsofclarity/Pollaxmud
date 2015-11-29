@@ -20,7 +20,7 @@ public class Teacher extends NPC{
 
 	    //Not completed
 	    System.out.println("This is a course you have not completed.");
-	    int right = c.ask();
+	    int right = c.ask();n
 	    String ans = control.scan();
 	    String[] options = new String[]{"a", "b", "c", "d"};
 
@@ -38,11 +38,11 @@ public class Teacher extends NPC{
 	    }
 	}
 	
-	    else if (!player.getCompletedCourses().contains(c)){
+	else if (!player.getCompletedCourses().contains(c)){
 
-		//Free course
-		System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? y/n");
-		if (control.ynQuestion()){
+	    //Free course
+	    System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? y/n");
+	    if (control.ynQuestion()){
 		player.enroll(c);
 		System.out.println("Congrats, you are registered.");
 	    }
