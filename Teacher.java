@@ -20,7 +20,7 @@ public class Teacher extends NPC{
 
 	    //Not completed
 	    System.out.println("This is a course you have not completed.");
-	    int right = c.ask();n
+	    int right = c.ask();
 	    String ans = control.scan();
 	    String[] options = new String[]{"a", "b", "c", "d"};
 
