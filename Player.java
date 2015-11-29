@@ -24,6 +24,20 @@ public class Player extends Creature{
 	return completedCourses;
     }
 
+
+    public Boolean hasCompleted(Course c){
+        return completedCourses.contains(c);
+    }
+
+    public Boolean hasNotFinished(Course c){
+        return unfinishedCourses.contains(c);
+    }
+
+
+    public Backpack getBackpack(){
+        return backpack;
+    }
+
     public void enroll(Course c){
 	unfinishedCourses.add(c);
     }
