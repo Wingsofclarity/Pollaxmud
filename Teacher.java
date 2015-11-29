@@ -19,6 +19,7 @@ public class Teacher extends NPC{
 
 	    //Not completed
 	    System.out.println("This is a course you have not completed.");
+<<<<<<< HEAD
 	    int r = c.ask();
 	    int a = Integer.parseInt(control.scan());
 	    while (a==-1){
@@ -33,6 +34,15 @@ public class Teacher extends NPC{
 		System.out.println("That was a wrong answer.");
 		player.setHp(player.getHp()-1);
 	    }
+=======
+	    boolean passed = c.ask();
+	    
+	    if (passed){
+		pass(player);
+	    }
+	    
+	   
+>>>>>>> 2c8416838e62565aab2e4c49e681a2805d3e7681
 	}
 	
 	else if (!player.getCompletedCourses().contains(c)){
@@ -58,6 +68,13 @@ public class Teacher extends NPC{
     @Override
     public String toString(){
 	return "Teacher: "+super.toString()+" "+c.getName();
+    }
+
+    public void pass(Player player){
+
+	player.getUnfinishedCourses().remove(c);
+	player.getCompletedCourses().add(c);
+
     }
     
 }

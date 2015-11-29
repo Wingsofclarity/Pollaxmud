@@ -35,11 +35,18 @@ public class Course{
 	return hp;
     }
     
+<<<<<<< HEAD
     public int ask(){
 	System.out.println("---"+name+"---");
 	Question q = getRandQuestion();
 	q.run();
 	return q.right;
+=======
+    public boolean ask(){
+	System.out.println("---"+name+"---");
+	boolean passed = getRandQuestion().run();
+	return passed;
+>>>>>>> 2c8416838e62565aab2e4c49e681a2805d3e7681
     }
 
     public String getQuestion(){
@@ -91,12 +98,38 @@ public class Course{
 
 	public void run(){
 	    System.out.println(question);
+<<<<<<< HEAD
 	    System.out.println("  1. "+answers.get(0));
 	    System.out.println("  2. "+answers.get(1));
 	    System.out.println("  3. "+answers.get(2));
 	    System.out.println("  4. "+answers.get(3));
 
 	    System.out.print("Enter your answer: ");
+=======
+	    System.out.println("  A. "+answers.get(0));
+	    System.out.println("  B. "+answers.get(1));
+	    System.out.println("  C. "+answers.get(2));
+	    System.out.println("  D. "+answers.get(3));
+	  
+	    String[] options = new String[]{"a", "b", "c", "d"};
+	    System.out.println("Your answer: ");
+
+	    String ans = System.console().readLine().toLowerCase();
+
+	    while(!Arrays.asList(options).contains(ans)){
+		System.out.println("So, is it gonna be A, B, C or D?");
+		ans = System.console().readLine().toLowerCase();
+	    }
+
+	    if(0 == ans.compareTo(options[right])){
+		System.out.println("Good job! I'm proud of you. Soon you will be ready to enter the almighty realms and envåldsmakt of the Svenskt näringsliv!");
+		return true;	
+	    }
+	    else{
+		System.out.println("Hmph, ridiculous... You have some more practicing to do, young person of unknown gender. Ah well, enjoy your freedom until the Arbetslivet gets hold of you!");	
+		return false;
+	    }	
+>>>>>>> 2c8416838e62565aab2e4c49e681a2805d3e7681
 	}
 
 	public String toString(){
