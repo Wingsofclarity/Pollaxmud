@@ -93,11 +93,23 @@ public class Course{
 	    System.out.println("  B. "+answers.get(1));
 	    System.out.println("  C. "+answers.get(2));
 	    System.out.println("  D. "+answers.get(3));
+	  
+	    String[] options = new String[]{"a", "b", "c", "d"};
+	    System.out.println("Your answer: ");
 
-	    //cheat
-	    ErrorControl.error();
-	    System.out.println("Enter your answer: A");
-	    return right==0;
+	    String ans = System.console().readLine().toLowerCase();
+
+	    while(!Arrays.asList(options).contains(ans)){
+		System.out.println("So, is it gonna be A, B, C or D?");
+		ans = System.console().readLine().toLowerCase();
+	    }
+
+	    if(0 == ans.compareTo(options[right])){
+		System.out.println("Good job! I'm proud of you. Soon you will be ready to enter the almighty realms and envåldsmakt of the Svenskt näringsliv!");
+	    }
+	    else{
+		System.out.println("Hmph, ridiculous... You have some more practicing to do, young person of unknown gender. Ah well, enjoy your freedom until the Arbetslivet gets hold of you!");
+	    }	
 	}
 
 	public String toString(){
