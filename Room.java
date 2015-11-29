@@ -1,18 +1,15 @@
 import java.util.*;
 public class Room{
     protected String name;
-    protected String description;
+    protected HashMap<String, Item> items;
     
     Room(){
 	this("Unknown room");
     }
-    
+
     Room(String name){
-	this(name, name+" is empty.");
-    }
-    Room(String name, String description){
 	this.name=name;
-	this.description=description;
+	items = new HashMap<String, Item>();
     }
     
     public LinkedList<Connection> getConnections(){
@@ -43,7 +40,20 @@ public class Room{
     }
     
     public String getDescription(){
-	return name;
-	//return description;
+	return name+" there are "+items+".";
+    }
+
+    public void addItem(Item i){
+	if (i instanceof Stackable && items.containsKey(i.getName())){
+	    Stackable s = (Stackable) items.get(i.getName());
+	    s.add();
+	}
+	else {
+	    items.put(i.getName(), i);
+	}
+    }
+
+    public Item getItem(String s){
+	return items.get(s);
     }
 }

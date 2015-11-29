@@ -1,13 +1,13 @@
-public class Key extends Item{
+public class Key extends Stackable{
     private boolean spent;
 
     Key(){
-        super(1);
+        super("key", 1);
         spent = false; 
-   }
+    }
 
     public void setSpent(){
-        this.spent = true;    
+        spent = true;    
     }
 
 }

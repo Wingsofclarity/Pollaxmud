@@ -14,6 +14,11 @@ public class Parser{
 		}
 		 else {
 		     Room r = new Room(line);
+		     r.addItem(randomItem());
+		     r.addItem(randomItem());
+		     r.addItem(randomItem());
+		     r.addItem(randomItem());
+		     r.addItem(randomItem());
 		     rooms.put(r.getName(), r);
 		 }
 	    }
@@ -289,5 +294,9 @@ public class Parser{
 	Object[] roomsArray = rooms.values().toArray();
 	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
 	return new Sphinx(r);
+    }
+
+    public static Item randomItem(){
+	return new Key();
     }
 }
