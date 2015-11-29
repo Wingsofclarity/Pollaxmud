@@ -35,9 +35,10 @@ public class Course{
 	return hp;
     }
     
-    public void ask(){
+    public boolean ask(){
 	System.out.println("---"+name+"---");
-	getRandQuestion().run();
+	boolean passed = getRandQuestion().run();
+	return passed;
     }
 
     public String getQuestion(){
@@ -106,9 +107,11 @@ public class Course{
 
 	    if(0 == ans.compareTo(options[right])){
 		System.out.println("Good job! I'm proud of you. Soon you will be ready to enter the almighty realms and envåldsmakt of the Svenskt näringsliv!");
+		return true;	
 	    }
 	    else{
-		System.out.println("Hmph, ridiculous... You have some more practicing to do, young person of unknown gender. Ah well, enjoy your freedom until the Arbetslivet gets hold of you!");
+		System.out.println("Hmph, ridiculous... You have some more practicing to do, young person of unknown gender. Ah well, enjoy your freedom until the Arbetslivet gets hold of you!");	
+		return false;
 	    }	
 	}
 

@@ -16,7 +16,13 @@ public class Teacher extends NPC{
 	System.out.print(name+" is a teacher in "+c.getName()+". ");
 	if (player.getUnfinishedCourses().contains(c)){
 	    System.out.println("This is a course you have not completed.");
-	    c.ask();
+	    boolean passed = c.ask();
+	    
+	    if (passed){
+		pass(player);
+	    }
+	    
+	   
 	}
 	else if (!player.getCompletedCourses().contains(c)){
 	    System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? Too bad you have to..");
@@ -30,6 +36,13 @@ public class Teacher extends NPC{
     @Override
     public String toString(){
 	return "Teacher: "+super.toString()+" "+c.getName();
+    }
+
+    public void pass(Player player){
+
+	player.getUnfinishedCourses().remove(c);
+	player.getCompletedCourses().add(c);
+
     }
     
 }
