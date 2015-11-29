@@ -35,9 +35,11 @@ public class Course{
 	return hp;
     }
     
-    public void ask(){
+    public int ask(){
 	System.out.println("---"+name+"---");
-	getRandQuestion().run();
+	Question q = getRandQuestion();
+	q.run();
+	return q.right;
     }
 
     public String getQuestion(){
@@ -87,17 +89,14 @@ public class Course{
 	    this.right=right;
 	}
 
-	public boolean run(){
+	public void run(){
 	    System.out.println(question);
-	    System.out.println("  A. "+answers.get(0));
-	    System.out.println("  B. "+answers.get(1));
-	    System.out.println("  C. "+answers.get(2));
-	    System.out.println("  D. "+answers.get(3));
+	    System.out.println("  1. "+answers.get(0));
+	    System.out.println("  2. "+answers.get(1));
+	    System.out.println("  3. "+answers.get(2));
+	    System.out.println("  4. "+answers.get(3));
 
-	    //cheat
-	    ErrorControl.error();
-	    System.out.println("Enter your answer: A");
-	    return right==0;
+	    System.out.print("Enter your answer: ");
 	}
 
 	public String toString(){

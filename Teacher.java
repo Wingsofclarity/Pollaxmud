@@ -12,17 +12,45 @@ public class Teacher extends NPC{
     }
 
     @Override
-    public void interact(Player player){
+    public void interact(Control control){
+	Player player = control.getPlayer();
 	System.out.print(name+" is a teacher in "+c.getName()+". ");
 	if (player.getUnfinishedCourses().contains(c)){
+
+	    //Not completed
 	    System.out.println("This is a course you have not completed.");
-	    c.ask();
+	    int r = c.ask();
+	    int a = Integer.parseInt(control.scan());
+	    while (a==-1){
+		System.out.println("Enter a number between 1-4");
+		a = Integer.parseInt(control.scan());
+	    }
+	    if (r==(a-1)){
+		System.out.println("That was the correct answer.");
+		player.setHp(player.getHp()+1); 
+	    }
+	    else{
+		System.out.println("That was a wrong answer.");
+		player.setHp(player.getHp()-1);
+	    }
 	}
+	
 	else if (!player.getCompletedCourses().contains(c)){
-	    System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? Too bad you have to..");
-	    player.enroll(c);
+
+	    //Free course
+	    System.out.println("This is a course you do not have. It has "+c.getHp()+" hp. Do you wish to register for this course? y/n");
+	    if (control.ynQuestion()){
+		player.enroll(c);
+		System.out.println("Congrats, you are registered.");
+	    }
+	    else{
+		System.out.println("Too bad.");
+	    }
 	}
+	
 	else if (player.getCompletedCourses().contains(c)) {
+
+	    //Completed course.
 	    System.out.println("You have completed this course.");
 	}
     }

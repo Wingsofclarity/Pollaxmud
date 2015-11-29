@@ -16,6 +16,10 @@ public class Player extends Creature{
 	return hp;
     }
 
+    public void setHp(int a){
+	this.hp=a;
+    }
+
     public LinkedList<Course> getUnfinishedCourses(){
         return unfinishedCourses;
     }

@@ -43,6 +43,10 @@ public class Creature{
     public String getName(){
 	return name;
     }
+
+    public void setHp(int a){
+
+    }
     
     public String toString(){
 	return name+" is at "+location();

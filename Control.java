@@ -9,6 +9,10 @@ public class Control{
 	this.world = world;
     }
 
+    public Player getPlayer(){
+	return player;
+    }
+
     public String scan(){
 	return System.console().readLine();
     }
@@ -57,7 +61,7 @@ public class Control{
     public void interact(String name){
 	HashMap<String, NPC> NPCs = world.getNPCsRoom(player.getLocation());
 	if (NPCs.containsKey(name)){
-	    NPCs.get(name).interact(player);
+	    NPCs.get(name).interact(this);
 	}
 	else {
 	    System.out.println(name+" is not present.");
@@ -98,10 +102,21 @@ public class Control{
 	sphinx.graduate(player);
     }
 
-    /*   public void move(String direction) {
-        player.move(world.getConnections(player.getLocation()));
-        
-        }*/
-
+    public boolean ynQuestion(){
+	String input = scan();
+	input = input.toLowerCase();
+	while (true){
+	    if (input.equals("no") || input.equals("n")){
+		return false;
+	    }
+	    else if (input.equals("yes") || input.equals("y")){
+		return true;
+	    }
+	    else {
+		System.out.println("Invalid input: "+input+". Type 'yes' or 'no'.");
+	    }
+	}
+	
+    }
     
 }

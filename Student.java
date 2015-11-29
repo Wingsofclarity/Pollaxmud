@@ -15,7 +15,8 @@ public class Student extends NPC{
     }
 
     @Override
-    public void interact(Player player){
+    public void interact(Control control){
+	Player player = control.getPlayer();
 	System.out.println("Hello there! I'm " + name + ".");	
 
 	if (player.hasNotFinished(completedC)){
@@ -23,7 +24,7 @@ public class Student extends NPC{
 	    System.out.println("If I can have your book on " + currentC + " I will help you with " + completedC + ".");	
 	    System.out.println("Do you want to talk and I'll give you some hints for your exam, or do you want to trade my book for yours?");
 
-	    String ans = System.console().readLine();
+	    String ans = control.scan();
 	    
 	    switch (ans){
 	    case "talk":
