@@ -14,7 +14,7 @@ public class Control{
     }
 
     public String scan(){
-	return System.console().readLine();
+	return System.console().readLine().toLowerCase();
     }
 
     public void command(){
@@ -86,10 +86,29 @@ public class Control{
 	    }
 	    else if (c.isLocked()){
 		System.out.println("Door is locked.\n");
+		unLock(c);
+		if (c.isUnlocked()) {
+		    player.move(r);
+		    System.out.println("I just entered a new room.\n");
+		    description();
+		}
 	    }
 	}
 	else {
 	    System.out.println("No such adjacent room.");
+	}
+    }
+
+    public void unLock(Connection c){
+	if (player.getKeys()>0){
+	    System.out.println("Do you wish to unlock this door and move through? You got "+player.getKeys()+" keys to spare.");
+	    if (ynQuestion()){
+		c.setAccess("unlocked");
+		System.out.println("Door unlocked.");
+	    }
+	}
+	else {
+	    System.out.println("You dont got enough keys to unlock this door.");
 	}
     }
 

@@ -57,7 +57,7 @@ public class Connection{
 	list.add(room2);
 	return list;
     }
-
+    
     public boolean equals(Object o){
 	assert(o instanceof Connection);
 	Connection con = (Connection) o;

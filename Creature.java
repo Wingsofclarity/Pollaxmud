@@ -37,15 +37,11 @@ public class Creature{
     public boolean equals(Object o){
 	assert(o instanceof Creature);
 	Creature c = (Creature) o;
-	return name.toLowerCase().equals(c.name.toLowerCase());
+	return name.toLowerCase().equals((c.name.toLowerCase()));
     }
 
     public String getName(){
 	return name;
-    }
-
-    public void setHp(int a){
-
     }
     
     public String toString(){

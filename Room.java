@@ -56,4 +56,10 @@ public class Room{
     public Item getItem(String s){
 	return items.get(s);
     }
+
+    public Item takeItem(String s){
+	Item i = items.get(s);
+	items.remove(s);
+	return i;
+    }
 }

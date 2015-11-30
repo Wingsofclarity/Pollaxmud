@@ -89,22 +89,23 @@ public class Course{
 	    this.right=right;
 	}
 
+	public String toStringAnswers(){
+	    return "  A. "+answers.get(0)+'\n'
+		+"  B. "+answers.get(1)+'\n'
+		+"  C. "+answers.get(2)+'\n'
+		+"  D. "+answers.get(3);
+	}
+
 	public void run(){
 	    System.out.println(question);
-	    System.out.println("  A. "+answers.get(0));
-	    System.out.println("  B. "+answers.get(1));
-	    System.out.println("  C. "+answers.get(2));
-	    System.out.println("  D. "+answers.get(3));
+	    System.out.println(toStringAnswers());
 	    System.out.print("Your answer: ");
 	}
 
 	public String toString(){
 	    String[] options = new String[]{"A", "B", "C", "D"};
 	    return question+'\n'+
-		" A. "+answers.get(0)+'\n'+
-		" B. "+answers.get(1)+'\n'+
-		" C. "+answers.get(2)+'\n'+
-		" D. "+answers.get(3)+'\n'+
+		toStringAnswers()+
 		"Right answer: "+options[right];
 	}
     }

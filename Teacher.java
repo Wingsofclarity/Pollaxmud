@@ -26,7 +26,7 @@ public class Teacher extends NPC{
 
 	    while(!Arrays.asList(options).contains(ans)){
 		System.out.println("So, is it gonna be A, B, C or D?");
-		ans = System.console().readLine().toLowerCase();
+		ans = control.scan();
 	    }
 
 	    if(0 == ans.compareTo(options[right])){

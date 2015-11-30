@@ -17,9 +17,9 @@ public class World{
 
     World(FileReader roomFile, FileReader NPCFile, FileReader connectionFile,
 	  FileReader courseFile, FileReader questionFile, FileReader nameFile){
-	names = Parser.parseName(nameFile);
-	rooms = Parser.parseRoom(roomFile);
 	courses = Parser.parseCourse(courseFile);
+	names = Parser.parseName(nameFile);
+	rooms = Parser.parseRoom(roomFile, courses);
 	NPCs = Parser.parseNPC(NPCFile, courses, rooms, names);
 	connections = Parser.parseConnection(connectionFile, rooms);
 	player = Parser.parsePlayer(rooms, courses);
@@ -51,6 +51,21 @@ public class World{
 	return e;
     }
 
+    public LinkedList<String> getNPCsNameRoom(Room r){
+	LinkedList<String> e = new LinkedList<String>();
+	Object[] array = NPCs.values().toArray();
+	for (int i = 0; i<array.length; i++){
+	    NPC element = (NPC) array[i];
+	    if (element.getLocation()==null){
+		
+	    }
+	    else if (element.getLocation().equals(r)){
+		e.add(element.getName());
+	    }
+	}
+	return e;
+    } 
+
     public HashMap<String, NPC> getNPCsRoom(Room r){
 	HashMap<String, NPC> e = new HashMap<String, NPC>();
 	Object[] array = NPCs.values().toArray();
@@ -60,7 +75,7 @@ public class World{
 		
 	    }
 	    else if (element.getLocation().equals(r)){
-		e.put(element.getName(), element);
+		e.put(element.getName().toLowerCase(), element);
 	    }
 	}
 	return e;
@@ -86,7 +101,7 @@ public class World{
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	LinkedList<Room> connected = getConnectedRooms(r);
-	return r.getDescription()+" Creatures called "+getNPCsRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
+	return r.getDescription()+" Creatures called "+getNPCsNameRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
 
     public Connection getConnection(Room a, Room b){
@@ -101,8 +116,6 @@ public class World{
 	    "Connections\n"+toStringConnections()+"\n\n"+
 	    "Courses\n"+toStringCourses();
     }
-
-
 
     public String toStringNPCs(){
 	return NPCs.toString();

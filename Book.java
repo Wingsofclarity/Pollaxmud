@@ -2,21 +2,20 @@ public class Book extends Item{
     Course course;
 
     Book(Course course){
-        super(2); //Borde matchas mot kurspoäng
-        this.course = course;
+	this("Bookof"+course.getName(), course.getHp(), course);
     }
 
-    Book(int volume, Course course){
-        super(volume);
+    Book(String name, int volume, Course course){
+        super(name, volume);
         this.course = course;
     }
 
     public Course getCourse(){
-	return this.course;
+	return course;
     }
 
     public Boolean sameSubject(Course c){
-	return course == c;
+	return course.equals(c);
     }
      
 

@@ -37,7 +37,10 @@ public class Player extends Creature{
         return unfinishedCourses.contains(c);
     }
 
-
+    public int getKeys(){
+	ErrorControl.error();
+	return 1;
+    }
     public Backpack getBackpack(){
         return backpack;
     }

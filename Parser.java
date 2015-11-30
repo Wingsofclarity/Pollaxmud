@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Parser{
 
-    public static HashMap<String,Room> parseRoom(FileReader roomFile){
+    public static HashMap<String,Room> parseRoom(FileReader roomFile, HashMap<String, Course> courses){
 	HashMap<String,Room> rooms = new HashMap<String,Room>();
 	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
@@ -14,11 +14,7 @@ public class Parser{
 		}
 		 else {
 		     Room r = new Room(line);
-		     r.addItem(randomItem());
-		     r.addItem(randomItem());
-		     r.addItem(randomItem());
-		     r.addItem(randomItem());
-		     r.addItem(randomItem());
+		     randomPlaceItems(r, 5, courses);
 		     rooms.put(r.getName(), r);
 		 }
 	    }
@@ -63,20 +59,20 @@ public class Parser{
 		    switch (devided[0]){
 		    case "randomstudent":{
 			Student s = randomStudent(courses,rooms, names);
-			while (NPCs.containsKey(s.getName())){
+			while (NPCs.containsKey(s.getName().toLowerCase())){
 			    s = randomStudent(courses,rooms, names);
 			}
-			NPCs.put(s.getName(), s);
+			NPCs.put(s.getName().toLowerCase(), s);
 			break;
 		    }
 
 
 		    case "randomteacher":{
 			Teacher t = randomTeacher(courses,rooms, names);
-			while (NPCs.containsKey(t.getName())){
+			while (NPCs.containsKey(t.getName().toLowerCase())){
 			    t = randomTeacher(courses,rooms, names);
 			}
-			NPCs.put(t.getName(), t);
+			NPCs.put(t.getName().toLowerCase(), t);
 			break;
 
 		    }
@@ -107,16 +103,16 @@ public class Parser{
 		    case "sphinx":{
 			if (devided.length==1){
 			    Sphinx s = randomSphinx(rooms);
-			    NPCs.put(s.getName(), s);
+			    NPCs.put(s.getName().toLowerCase(), s);
 			}
 			else if(devided[1].equals("random")){
 			    Sphinx s = randomSphinx(rooms);
-			    NPCs.put(s.getName(), s);
+			    NPCs.put(s.getName().toLowerCase(), s);
 			}
 			else{
 			    Room r = rooms.get(devided[1]);
 			    Sphinx s = new Sphinx(r);
-			    NPCs.put(s.getName(), s);
+			    NPCs.put(s.getName().toLowerCase(), s);
 			}
 			break;
 		    }
@@ -261,7 +257,6 @@ public class Parser{
 	Object[] roomsArray = rooms.values().toArray();
 	Room r = (Room) roomsArray[generator.nextInt(roomsArray.length)];
 	return new Teacher(n, r, c);
-
     }
 
     public static Room randomRoom(){
@@ -296,7 +291,21 @@ public class Parser{
 	return new Sphinx(r);
     }
 
-    public static Item randomItem(){
-	return new Key();
+    public static Item randomItem(HashMap<String,Course> courses){
+	Random random = new Random();
+        int randomCourse = random.nextInt(courses.size());
+	Object[] coursesArray = courses.values().toArray();
+	Course c = (Course) coursesArray[randomCourse];
+	return new Book(c);
+	
+    }
+
+    public static void randomPlaceItems(Room room, int a, HashMap<String,Course> courses){
+	int i = 1;
+	while (i<=a){
+	    room.addItem(randomItem(courses));
+	    i++;
+	}
+	
     }
 }

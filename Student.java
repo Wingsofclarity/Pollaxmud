@@ -11,7 +11,7 @@ public class Student extends NPC{
 
     @Override
     public String toString(){
-	return "Student: "+super.toString();
+	return "Student: "+super.toString()+" "+completedC.getName()+" "+currentC.getName();
     }
 
     @Override
