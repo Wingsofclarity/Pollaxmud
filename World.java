@@ -11,9 +11,6 @@ public class World{
     private HashMap<String, Course> courses;
     private LinkedList<String> names;
     public Player player;
-    
-    World(){
-    }
 
     World(FileReader roomFile, FileReader NPCFile, FileReader connectionFile,
 	  FileReader courseFile, FileReader questionFile, FileReader nameFile){
@@ -29,12 +26,6 @@ public class World{
     public HashMap<String, NPC> getNPCs(){
 	return NPCs;
     }
-
-    /*
-    public Room getRoom(String name){
-	assert(rooms.contains(new Room(name)));
-	return rooms.get(new Room(name));
-	}*/
     
     public HashMap<String,Room> getRooms(){
 	return rooms;
@@ -81,23 +72,6 @@ public class World{
 	return e;
     } 
 
-    public LinkedList<Room> getUnreachable(){
-	LinkedList<Room> r = new LinkedList<Room>();
-	boolean reachable = false;
-	for (int i = 0; i<rooms.size(); i++){
-	    for (int j = 0; j<connections.size(); j++){
-		if (connections.get(j).getRooms().contains(rooms.get(i))){
-		    reachable = true;
-		    break;
-		}
-	    }
-	    if (!reachable){
-		r.add(rooms.get(i));
-	    }
-	}
-	return r;
-    }
-
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	LinkedList<Room> connected = getConnectedRooms(r);
@@ -110,7 +84,6 @@ public class World{
     
     @Override
     public String toString(){
-	System.out.println("Trace");
 	return "NPCs \n" + toStringNPCs()+"\n\n"+
 	    "Rooms \n"+toStringRooms()+"\n\n"+
 	    "Connections\n"+toStringConnections()+"\n\n"+

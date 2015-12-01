@@ -15,7 +15,7 @@ public class Parser{
 		 else {
 		     Room r = new Room(line);
 		     randomPlaceItems(r, 5, courses);
-		     rooms.put(r.getName(), r);
+		     rooms.put(r.getName().toLowerCase(), r);
 		 }
 	    }
 	    return rooms;
