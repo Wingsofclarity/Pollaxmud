@@ -45,6 +45,21 @@ public class Player extends Creature{
         return backpack;
     }
 
+    public void printBackpack(){
+	Item[] bp = backpack.toArray(new Item[0]);
+	for(int i = 0; i<bp.length; i++){
+	    int nr = i + 1;
+	    System.out.println((i+1) + ". " + bp[i].toString());
+	}
+    }
+
+    public void removeFromBp(int key){
+	Item[] bp = backpack.toArray(new Item[0]);
+	Item item = bp[key];
+	System.out.println("You left your deeply treasured " + item.toString());
+	backpack.remove(item);
+    }
+
     public LinkedList<Book> getBooks(){
 	LinkedList<Book> books = new LinkedList<>();
 	Iterator<Item> iterBackpack = backpack.iterator();

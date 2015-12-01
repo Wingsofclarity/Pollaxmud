@@ -40,7 +40,7 @@ public class Room{
     }
     
     public String getDescription(){
-	return name+" there are "+items+".";
+	return name+". There are "+items+" in the room.";
     }
 
 

@@ -72,10 +72,11 @@ public class World{
 	return e;
     } 
 
+
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	LinkedList<Room> connected = getConnectedRooms(r);
-	return r.getDescription()+" Creatures called "+getNPCsNameRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
+	return "You are in room " + r.getDescription()+" Creatures called "+getNPCsNameRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
 
     public Connection getConnection(Room a, Room b){

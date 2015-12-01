@@ -39,6 +39,14 @@ public class Control{
 	case "interact":
 	    interact(attribute);
 	    break;
+
+	case "take":
+	    take(attribute);
+	    break;
+
+	case "drop":
+	    drop();
+	break;
 	    
 	case "exit":
 	    exit();
@@ -109,6 +117,24 @@ public class Control{
 	}
 	else {
 	    System.out.println("You dont got enough keys to unlock this door.");
+	}
+    }
+
+    public void take(String item){
+
+    }
+
+    public void drop(){ //Fall för tom ryggsäck, ska vara inom intervall etc.
+	if(player.getBackpack().isEmpty()){
+	    System.out.println("Your backpack is ekande tom, there's nothing to leave behind.");
+	}
+	else{
+	    System.out.println("You are carrying..:");
+	    player.printBackpack();
+	    System.out.println("Which object would you like to remove from your backpack?");
+
+	    String ans = scan();
+	    player.removeFromBp(Integer.parseInt(ans));
 	}
     }
 
