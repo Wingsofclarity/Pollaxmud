@@ -43,14 +43,16 @@ public class Room{
 	return name+" there are "+items+".";
     }
 
-    public void addItem(Item i){
+
+
+    public void addItem(Item i){    /*
 	if (i instanceof Stackable && items.containsKey(i.getName())){
 	    Stackable s = (Stackable) items.get(i.getName());
 	    s.add();
 	}
 	else {
 	    items.put(i.getName(), i);
-	}
+	}*/
     }
 
     public Item getItem(String s){
