@@ -44,15 +44,15 @@ public class Student extends NPC{
     }
     
     public void trade(Player player){ //Logik för om spelaren har boken ska flyttas & anropas från interact
-	int size = player.getBackpack().getBooks().size();
-	Book[] books = player.getBackpack().getBooks().toArray(new Book[size]);
+	int size = player.getBooks().size();
+	Book[] books = player.getBooks().toArray(new Book[size]);
 
 	for(int i = 0; i < books.length; i++){
 	    Book book = books[i];
 	    if (book.sameSubject(currentC)){
-		player.getBackpack().getContent().remove(book);
+		player.getBackpack().remove(book);
 		System.out.println("Thank you for the book! Here's one on " + completedC  + " for you.");
-		player.getBackpack().getContent().add(new Book(completedC));
+		player.getBackpack().add(new Book(completedC));
 		return;
 	    }
 	}

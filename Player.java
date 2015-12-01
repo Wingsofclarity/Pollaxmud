@@ -4,7 +4,7 @@ public class Player extends Creature{
     private int hp = 0;
     private LinkedList<Course> unfinishedCourses = new LinkedList<Course>();
     private LinkedList<Course> completedCourses = new LinkedList<>();
-    private Backpack backpack = new Backpack();
+    private LinkedList<Item> backpack = new LinkedList<>();
 
     Player(String name, Room room, LinkedList<Course> completedCourses){
 	super(name, room);
@@ -41,8 +41,21 @@ public class Player extends Creature{
 	ErrorControl.error();
 	return 1;
     }
-    public Backpack getBackpack(){
+    public LinkedList<Item> getBackpack(){
         return backpack;
+    }
+
+    public LinkedList<Book> getBooks(){
+	LinkedList<Book> books = new LinkedList<>();
+	Iterator<Item> iterBackpack = backpack.iterator();
+
+	for(int i = 0; i < backpack.size(); i++){
+	    Item current = iterBackpack.next();
+	    if(current instanceof Book){
+		books.add((Book)current);
+	    }
+	}
+	return books;
     }
 
     public void enroll(Course c){
