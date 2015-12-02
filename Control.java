@@ -50,7 +50,7 @@ public class Control{
 
 	case "drop":
 	    drop();
-	break;
+	    break;
 	    
 	case "exit":
 	    exit();
