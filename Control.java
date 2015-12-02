@@ -140,9 +140,20 @@ public class Control{
 	}
     }
 
+    public void dropKey(){
+	if (player.getKeys()>0){
+	    player.removeKeys(1);
+	    player.getLocation().addKeys(1);
+	}
+	else {
+	    System.out.println("There are no keys in your backpack.");
+	}
+
+    }
+
     public void drop(){ //Fall för tom ryggsäck, ska vara inom intervall etc.
-	if(player.getBackpack().isEmpty()){
-	    System.out.println("Your backpack is ekande tom, there's nothing to leave behind.");
+	if(player.getBackpack().isEmpty() && player.getKeys()==0){
+	    System.out.println("Your backpack is ekande tom, there's nothing to leave behind but your soul.");
 	}
 	else{
 	    System.out.println("You are carrying..:");
@@ -150,7 +161,12 @@ public class Control{
 	    System.out.println("Which object would you like to remove from your backpack?");
 
 	    String ans = scan();
-	    player.removeFromBp(Integer.parseInt(ans));
+	    if (ans.equals("key") ){
+		dropKey();
+	    }
+	    else {
+		player.removeFromBp(Integer.parseInt(ans));
+	    }
 	}
     }
 
