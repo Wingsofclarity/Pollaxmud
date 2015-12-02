@@ -40,6 +40,10 @@ public class Control{
 	    interact(attribute);
 	    break;
 
+	case "inventory":
+	    inventory();
+	    break;
+
 	case "take":
 	    take(attribute);
 	    break;
@@ -119,6 +123,10 @@ public class Control{
 	else {
 	    System.out.println("You dont got enough keys to unlock this door.");
 	}
+    }
+
+    public void inventory(){
+	player.printBackpack();
     }
 
     public void take(String item){

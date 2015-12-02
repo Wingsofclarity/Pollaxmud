@@ -1,7 +1,7 @@
 import java.util.*;
 public class Room{
     protected String name;
-    protected HashMap<String, Item> items;
+    protected LinkedList<Item> items;
     protected int keys;
     
     Room(){
@@ -10,7 +10,7 @@ public class Room{
 
     Room(String name){
 	this.name=name;
-	items = new HashMap<String, Item>();
+	items = new LinkedList<Item>();
 	keys = 0;
     }
     
@@ -46,7 +46,7 @@ public class Room{
     }
 
     public void addItem(Item i){    
-	items.put(i.getName(), i);
+	items.add(i);
     }
 
     public void addKeys(int a){
@@ -65,13 +65,7 @@ public class Room{
 	return keys;
     }
 
-    public Item getItem(String s){
-	return items.get(s);
-    }
-
-    public Item takeItem(String s){
-	Item i = items.get(s);
-	items.remove(s);
-	return i;
+    public void getItem(String s){
+	ErrorControl.error();
     }
 }

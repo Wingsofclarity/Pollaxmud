@@ -65,6 +65,7 @@ public class Player extends Creature{
 	    int nr = i + 1;
 	    System.out.println((i+1) + ". " + bp[i].toString());
 	}
+	System.out.println("You got "+getKeys()+" keys.");
     }
 
     public void removeFromBp(int key){
