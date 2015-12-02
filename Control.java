@@ -59,6 +59,10 @@ public class Control{
 	case "cheat":
 	    System.out.println(world);
 	    break;
+
+	case "check":
+	    check(attribute);
+	    break;
 	    
 	default:
 	    System.out.println("Unknown command '"+input+"'");
@@ -126,6 +130,7 @@ public class Control{
 	    takeKey();
 	}
 	else {
+
 	    ErrorControl.error();
 	}
     }
@@ -161,6 +166,19 @@ public class Control{
     public void graduate(){
 	Sphinx sphinx = (Sphinx) world.getNPCs().get("sphinx");
 	sphinx.graduate(player);
+    }
+
+    public void check(String string){
+	switch(string){
+	case "hp":
+		System.out.println(player.getHp());
+		break;
+	case "backpack":
+	    player.printBackpack();
+	    break;
+	default:
+	System.out.println("Invalid command.");
+	    }
     }
 
     public boolean ynQuestion(){
