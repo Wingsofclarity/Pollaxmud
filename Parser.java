@@ -14,7 +14,9 @@ public class Parser{
 		}
 		 else {
 		     Room r = new Room(line);
-		     randomPlaceItems(r, 5, courses);
+		     Random generator = new Random();
+		     r.addKeys(generator.nextInt(3));
+		     r.addItem(randomBook(courses));
 		     rooms.put(r.getName().toLowerCase(), r);
 		 }
 	    }
@@ -291,21 +293,12 @@ public class Parser{
 	return new Sphinx(r);
     }
 
-    public static Item randomItem(HashMap<String,Course> courses){
+    public static Book randomBook(HashMap<String,Course> courses){
 	Random random = new Random();
         int randomCourse = random.nextInt(courses.size());
 	Object[] coursesArray = courses.values().toArray();
 	Course c = (Course) coursesArray[randomCourse];
 	return new Book(c);
-	
-    }
-
-    public static void randomPlaceItems(Room room, int a, HashMap<String,Course> courses){
-	int i = 1;
-	while (i<=a){
-	    room.addItem(randomItem(courses));
-	    i++;
-	}
 	
     }
 }

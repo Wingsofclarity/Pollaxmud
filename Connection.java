@@ -103,20 +103,6 @@ public class Connection{
     }
 
     public String toStringAccess(){
-	/*
-	switch (access){
-	case Unlocked:
-	    return "Unlocked";
-
-	case Closed:
-	    return "Closed";
-
-	case Locked:
-	    return "Locked";
-
-	default:
-	    return "Unknown access";
-	    }*/
 	return "Unknown access";
     }
 

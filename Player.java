@@ -5,6 +5,7 @@ public class Player extends Creature{
     private LinkedList<Course> unfinishedCourses = new LinkedList<Course>();
     private LinkedList<Course> completedCourses = new LinkedList<>();
     private LinkedList<Item> backpack = new LinkedList<>();
+    private int keys = 0;
 
     Player(String name, Room room, LinkedList<Course> completedCourses){
 	super(name, room);
@@ -38,11 +39,24 @@ public class Player extends Creature{
     }
 
     public int getKeys(){
-	ErrorControl.error();
-	return 1;
+	return keys;
     }
+    
     public LinkedList<Item> getBackpack(){
         return backpack;
+    }
+
+    public boolean hasBookWithSubject(Course course){
+	Item[] bp = backpack.toArray(new Item[0]);
+	for (int i = 0; i<bp.length; i++){
+	    if (bp[i] instanceof Book){
+		Book book = (Book) bp[i];
+		if (book.sameSubject(course)){
+		    return true;
+		}
+	    }
+	}
+	return false;
     }
 
     public void printBackpack(){
@@ -96,4 +110,15 @@ public class Player extends Creature{
 	return courses.get(randomCourse);
     }
 
+    public void addKeys(int a){
+	keys+=a;
+    }
+
+    public void removeKeys(int a){
+	if (a>=keys) {
+	    keys=0;
+	    return;
+	}
+	keys-=a;
+    }
 }

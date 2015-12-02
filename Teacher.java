@@ -23,7 +23,15 @@ public class Teacher extends NPC{
 	    int right = c.ask();
 	    String ans = control.scan();
 	    String[] options = new String[]{"a", "b", "c", "d"};
-
+	    if (player.hasBookWithSubject(c)){
+		Random generator = new Random();
+		int notRight = generator.nextInt(4);
+		while (notRight==right){
+		    notRight = generator.nextInt(4);
+		}
+		System.out.println("Your book tells you it's not "+options[notRight].toUpperCase()+". ");
+	    }
+	    
 	    while(!Arrays.asList(options).contains(ans)){
 		System.out.println("So, is it gonna be A, B, C or D?");
 		ans = control.scan();

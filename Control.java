@@ -94,7 +94,7 @@ public class Control{
 	    }
 	    else if (c.isLocked()){
 		System.out.println("Door is locked.\n");
-		unLock(c);
+		unlock(c);
 		if (c.isUnlocked()) {
 		    player.move(r);
 		    System.out.println("I just entered a new room.\n");
@@ -107,10 +107,11 @@ public class Control{
 	}
     }
 
-    public void unLock(Connection c){
+    public void unlock(Connection c){
 	if (player.getKeys()>0){
-	    System.out.println("Do you wish to unlock this door and move through? You got "+player.getKeys()+" keys to spare.");
+	    System.out.print("Do you wish to unlock this door and move through? You got "+player.getKeys()+" keys to spare. y/n ");
 	    if (ynQuestion()){
+		player.removeKeys(1);
 		c.setAccess("unlocked");
 		System.out.println("Door unlocked.");
 	    }
@@ -121,7 +122,22 @@ public class Control{
     }
 
     public void take(String item){
+	if (item.equals("key")){
+	    takeKey();
+	}
+	else {
+	    ErrorControl.error();
+	}
+    }
 
+    public void takeKey(){
+	if (player.getLocation().getKeys()>0){
+	    player.addKeys(1);
+	    player.getLocation().removeKeys(1);
+	}
+	else {
+	    System.out.println("There are no keys in this room.");
+	}
     }
 
     public void drop(){ //Fall för tom ryggsäck, ska vara inom intervall etc.

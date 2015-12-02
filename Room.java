@@ -2,6 +2,7 @@ import java.util.*;
 public class Room{
     protected String name;
     protected HashMap<String, Item> items;
+    protected int keys;
     
     Room(){
 	this("Unknown room");
@@ -10,6 +11,7 @@ public class Room{
     Room(String name){
 	this.name=name;
 	items = new HashMap<String, Item>();
+	keys = 0;
     }
     
     public LinkedList<Connection> getConnections(){
@@ -40,19 +42,27 @@ public class Room{
     }
     
     public String getDescription(){
-	return name+". There are "+items+" in the room.";
+	return name+". There are "+items+" and "+keys+" keys in the room.";
     }
 
+    public void addItem(Item i){    
+	items.put(i.getName(), i);
+    }
 
+    public void addKeys(int a){
+	keys+=a;
+    }
 
-    public void addItem(Item i){    /*
-	if (i instanceof Stackable && items.containsKey(i.getName())){
-	    Stackable s = (Stackable) items.get(i.getName());
-	    s.add();
+    public void removeKeys(int a){
+	if (a>=keys) {
+	    keys=0;
+	    return;
 	}
-	else {
-	    items.put(i.getName(), i);
-	}*/
+	keys-=a;
+    }
+
+    public int getKeys(){
+	return keys;
     }
 
     public Item getItem(String s){

@@ -11,5 +11,4 @@ public class Key extends Item{
     public void setSpent(){
 	spent = true;    
     }
-
 }
