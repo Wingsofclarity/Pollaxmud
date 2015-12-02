@@ -74,5 +74,7 @@ public class Teacher extends NPC{
     public void pass(Player player){
 	player.getUnfinishedCourses().remove(c);
 	player.getCompletedCourses().add(c);
+	int points = c.getHp();
+	player.increaseHp(points);
     }    
 }
