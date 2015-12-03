@@ -20,8 +20,8 @@ public class Teacher extends NPC{
 
 	    //Not completed
 	    System.out.println("This is a course you have not completed.");
+
 	    int right = c.ask();
-	    String ans = control.scan();
 	    String[] options = new String[]{"a", "b", "c", "d"};
 	    if (player.hasBookWithSubject(c)){
 		Random generator = new Random();
@@ -31,6 +31,8 @@ public class Teacher extends NPC{
 		}
 		System.out.println("Your book tells you it's not "+options[notRight].toUpperCase()+". ");
 	    }
+	    System.out.print("Your answer: ");
+	    String ans = control.scan();
 	    
 	    while(!Arrays.asList(options).contains(ans)){
 		System.out.println("So, is it gonna be A, B, C or D?");

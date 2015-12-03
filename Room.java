@@ -13,11 +13,6 @@ public class Room{
 	items = new LinkedList<Item>();
 	keys = 0;
     }
-    
-    public LinkedList<Connection> getConnections(){
-	ErrorControl.error();
-	return new LinkedList<Connection>();
-    }
 
     @Override
     public String toString(){
@@ -49,6 +44,28 @@ public class Room{
 	items.add(i);
     }
 
+    public Item getItem(String s){
+	Item[] itemsArray = (Item[]) items.toArray();
+	for (int i = 0; i<itemsArray.length; i++){
+	    if (itemsArray[i].getName().equals(s)){
+		return items.get(i);
+	    }
+	}
+	return null;
+    }
+
+    public Item takeItem(String s){
+	Object[] itemsArray =  items.toArray();
+	for (int i = 0; i<itemsArray.length; i++){
+	    Item item = (Item) items.get(i);
+	    if (item.getName().toLowerCase().equals(s)){
+		items.remove(i);
+		return item;
+	    }
+	}
+	return null;
+    }
+
     public void addKeys(int a){
 	keys+=a;
     }
@@ -63,9 +80,5 @@ public class Room{
 
     public int getKeys(){
 	return keys;
-    }
-
-    public void getItem(String s){
-	ErrorControl.error();
     }
 }

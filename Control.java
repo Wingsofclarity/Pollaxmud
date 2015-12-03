@@ -1,8 +1,8 @@
 import java.util.*;
 public class Control{
-    Player player;
-    World world;
-    boolean exit = false;
+    protected Player player;
+    protected World world;
+    protected boolean exit = false;
 
     Control(Player player, World world){
 	this.player = player;
@@ -18,8 +18,11 @@ public class Control{
     }
 
     public void command(){
+	if (player.getHp()==0){
+	    exit=true;
+	    return;
+	}
 	String input = scan();
-	//input = input.toLowerCase();
         String[] parts = input.split(" ");
         String command = parts[0];
 	String attribute = null;
@@ -130,7 +133,7 @@ public class Control{
     }
 
     public void inventory(){
-	player.printBackpack();
+	player.printBackpack_2();
     }
 
     public void take(String item){
@@ -138,8 +141,12 @@ public class Control{
 	    takeKey();
 	}
 	else {
-
-	    ErrorControl.error();
+	    Item i = player.getLocation().takeItem(item);
+	    if (i == null) System.out.println("There is no such item.");
+	    else {
+		System.out.println("You have picked up "+i+".");
+		player.addItem(i);
+	    }
 	}
     }
 

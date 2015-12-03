@@ -3,8 +3,8 @@ import java.util.*;
 public class Player extends Creature{
     private int hp = 0;
     private LinkedList<Course> unfinishedCourses = new LinkedList<Course>();
-    private LinkedList<Course> completedCourses = new LinkedList<>();
-    private LinkedList<Item> backpack = new LinkedList<>();
+    private LinkedList<Course> completedCourses = new LinkedList<Course>();
+    private LinkedList<Item> backpack = new LinkedList<Item>();
     private int keys = 0;
 
     Player(String name, Room room, LinkedList<Course> completedCourses){
@@ -18,11 +18,13 @@ public class Player extends Creature{
     }
 
     public void setHp(int a){
+	if (a>180) a=180;
+	if (a<0) a=0;
 	this.hp=a;
     }
 
-   public void increaseHp(int a){
-	this.hp = hp + a;
+    public void increaseHp(int a){
+	setHp(getHp()+a);
     }
 
     public LinkedList<Course> getUnfinishedCourses(){
@@ -66,9 +68,14 @@ public class Player extends Creature{
     public void printBackpack(){
 	Item[] bp = backpack.toArray(new Item[0]);
 	for(int i = 0; i<bp.length; i++){
-	    int nr = i + 1;
+	    if (bp[i]==null) 	    System.out.println("Trace1");
 	    System.out.println((i+1) + ". " + bp[i].toString());
 	}
+	System.out.println("You got "+getKeys()+" keys.");
+    }
+
+    public void printBackpack_2(){
+	System.out.println(backpack);
 	System.out.println("You got "+getKeys()+" keys.");
     }
 
@@ -90,6 +97,10 @@ public class Player extends Creature{
 	    }
 	}
 	return books;
+    }
+
+    public void addItem(Item i){
+	backpack.add(i);
     }
 
     public void enroll(Course c){
