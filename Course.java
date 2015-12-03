@@ -99,7 +99,6 @@ public class Course{
 	public void run(){
 	    System.out.println(question);
 	    System.out.println(toStringAnswers());
-	    System.out.print("Your answer: ");
 	}
 
 	public String toString(){

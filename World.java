@@ -10,13 +10,15 @@ public class World{
     private LinkedList<Connection> connections;
     private HashMap<String, Course> courses;
     private LinkedList<String> names;
+    private HashMap<String, Item> abstractItems;
     public Player player;
 
     World(FileReader roomFile, FileReader NPCFile, FileReader connectionFile,
 	  FileReader courseFile, FileReader questionFile, FileReader nameFile){
 	courses = Parser.parseCourse(courseFile);
+	abstractItems = Parser.parseItems(courses);
 	names = Parser.parseName(nameFile);
-	rooms = Parser.parseRoom(roomFile, courses);
+	rooms = Parser.parseRoom(roomFile, abstractItems);
 	NPCs = Parser.parseNPC(NPCFile, courses, rooms, names);
 	connections = Parser.parseConnection(connectionFile, rooms);
 	player = Parser.parsePlayer(rooms, courses);

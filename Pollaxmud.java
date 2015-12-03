@@ -14,12 +14,14 @@ public class Pollaxmud{
 				   courseFile, questionFile, nameFile);
 	    Control control = new Control(poll.player, poll);
 
+	    System.out.println("Welcome to pollaxsud.");
+	    System.out.println(poll.getDescription(poll.player.getLocation()));
 	    while (true){
-		System.out.print("Awaiting input..");
+		System.out.print("Awaiting input: ");
 		control.command();
 
 		if (control.exit){
-		    //System.out.println(poll);
+		    System.out.println("Pollaxsud exiting.");
 		    return;
 		}
 	    }

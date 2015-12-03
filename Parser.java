@@ -5,19 +5,16 @@ import java.io.IOException;
 
 public class Parser{
 
-    public static HashMap<String,Room> parseRoom(FileReader roomFile, HashMap<String, Course> courses){
+    public static HashMap<String,Room> parseRoom(FileReader roomFile, HashMap<String, Item> items){
 	HashMap<String,Room> rooms = new HashMap<String,Room>();
 	try(BufferedReader br = new BufferedReader(roomFile)) {
 	    for(String line; (line = br.readLine()) != null; ) {
 		if (line.equals("")){
-		    //Nothing;
 		}
 		 else {
-		     Room r = new Room(line);
-		     Random generator = new Random();
-		     r.addKeys(generator.nextInt(3));
-		     r.addItem(randomBook(courses));
-		     rooms.put(r.getName().toLowerCase(), r);
+		     Room room = new Room(line);
+		     randomItems(room, items);
+		     rooms.put(room.getName().toLowerCase(), room);
 		 }
 	    }
 	    return rooms;
@@ -25,6 +22,16 @@ public class Parser{
 	catch (IOException e){
 	    ErrorControl.error();
 	    return rooms;
+	}
+    }
+
+    public static void randomItems(Room room, HashMap<String, Item> items){
+	Random generator = new Random();
+	Object[] itemsArray = items.values().toArray();
+	room.addKeys(generator.nextInt(3));
+	while (generator.nextInt(100)>20){
+	    Item i = (Item) itemsArray[generator.nextInt(items.size()-1)];
+	    room.addItem(i);
 	}
     }
 
@@ -234,6 +241,16 @@ public class Parser{
         return new Player("Mr.Player", randomRoom, completedCourses);
     }
 
+    public static HashMap<String, Item> parseItems(HashMap<String,Course> courses){
+	HashMap<String, Item> items = new HashMap<String, Item>();
+	Object[] coursesArray = courses.values().toArray();
+	for (int i = 0; i<coursesArray.length; i++){
+	    Book b = new Book((Course) coursesArray[i]);
+	    items.put(b.getName(), b);
+	}
+	return items;
+    }
+
     public static Student randomStudent(HashMap<String,Course> courses, HashMap<String,Room> rooms, LinkedList<String> names){
 	String n = names.get(randomWithRange(0,names.size()-1));
 	Random generator = new Random();
@@ -293,12 +310,5 @@ public class Parser{
 	return new Sphinx(r);
     }
 
-    public static Book randomBook(HashMap<String,Course> courses){
-	Random random = new Random();
-        int randomCourse = random.nextInt(courses.size());
-	Object[] coursesArray = courses.values().toArray();
-	Course c = (Course) coursesArray[randomCourse];
-	return new Book(c);
-	
-    }
+
 }

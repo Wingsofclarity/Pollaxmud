@@ -99,7 +99,7 @@ public class Connection{
     }
 
     public String toString(){
-	return room1.toString()+" <-> "+room2.toString()+" = "+access.toString()+". ";
+	return room1.getName()+" <-> "+room2.getName()+" = "+access.toString()+". ";
     }
 
     public String toStringAccess(){
