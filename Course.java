@@ -1,9 +1,9 @@
 import java.util.*;
 public class Course{
-    String name;
-    String id;
-    LinkedList<Question> questions;
-    int hp;
+    private String name;
+    private String id;
+    private LinkedList<Question> questions;
+    private int hp;
 
     Course(){
 	this("NotMath");
@@ -27,9 +27,19 @@ public class Course{
 	return id.equals(c.id);
     }
 
-    public void ask(){
+    public String getName(){
+	return name;
+    }
 
-	getRandQuestion().run();
+    public int getHp(){
+	return hp;
+    }
+    
+    public int ask(){
+	System.out.println("---"+name+"---");
+	Question q = getRandQuestion();
+	q.run();
+	return q.right;
     }
 
     public String getQuestion(){
@@ -50,6 +60,10 @@ public class Course{
         Random random = new Random();
         int randomQuestion = random.nextInt(size);
 	return questions.get(randomQuestion);
+    }
+
+    public String getId(){
+	return id;
     }
 
     public int numQuestions(){
@@ -75,26 +89,24 @@ public class Course{
 	    this.right=right;
 	}
 
-	public boolean run(){
-	    System.out.println(question);
-	    System.out.println("  A. "+answers.get(0));
-	    System.out.println("  B. "+answers.get(1));
-	    System.out.println("  C. "+answers.get(2));
-	    System.out.println("  D. "+answers.get(3));
+	public String toStringAnswers(){
+	    return "  A. "+answers.get(0)+'\n'
+		+"  B. "+answers.get(1)+'\n'
+		+"  C. "+answers.get(2)+'\n'
+		+"  D. "+answers.get(3);
+	}
 
-	    //cheat
-	    ErrorControl.error();
-	    System.out.println("Enter your answer: A");
-	    return right==0;
+	public void run(){
+	    System.out.println(question);
+	    System.out.println(toStringAnswers());
+	    System.out.print("Your answer: ");
 	}
 
 	public String toString(){
+	    String[] options = new String[]{"A", "B", "C", "D"};
 	    return question+'\n'+
-		"  "+answers.get(0)+'\n'+
-		"  "+answers.get(1)+'\n'+
-		"  "+answers.get(2)+'\n'+
-		"  "+answers.get(3)+'\n'+
-		"Right answer: "+right;
+		toStringAnswers()+
+		"Right answer: "+options[right];
 	}
     }
 

@@ -1,7 +1,6 @@
 public class Sphinx extends NPC{
-    
-    Sphinx(){
-	super("The Sphinx");
+    Sphinx(Room room){
+	super("sphinx",room);
     }
     
     public void chat(){

@@ -13,11 +13,13 @@ public class Pollaxmud{
 	    World poll = new World(roomFile,creatureFile, connectionFile,
 				   courseFile, questionFile, nameFile);
 	    Control control = new Control(poll.player, poll);
+
 	    while (true){
 		System.out.print("Awaiting input..");
-		control.scan();
+		control.command();
+
 		if (control.exit){
-		    System.out.println(poll);
+		    //System.out.println(poll);
 		    return;
 		}
 	    }

@@ -1,4 +1,5 @@
-Potatoesclass, POTM123, 3
-Physics, QQQ222, 2
-Slacking-pro, 000111, 1
-Pardon my French!, PMF01, 3
+Potatoesclass, POTM123, 60
+Physics, QQQ222, 60
+Slacking-pro, 000111, 60
+Pardon my French!, PMF01, 60
+UltimateSuccess, yay, 180

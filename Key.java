@@ -1,13 +1,14 @@
 public class Key extends Item{
     private boolean spent;
-
+    private static int no = 0;
+    
     Key(){
-        super(1);
-        spent = false; 
-   }
-
-    public void setSpent(){
-        this.spent = true;    
+        super("key"+no, 1);
+        spent = false;
+	no++;
     }
 
+    public void setSpent(){
+	spent = true;    
+    }
 }

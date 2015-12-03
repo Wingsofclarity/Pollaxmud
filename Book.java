@@ -1,9 +1,22 @@
 public class Book extends Item{
-    Course c;
+    Course course;
 
-    Book(int volume, Course c){
-        super(volume);
-        this.c = c;
+    Book(Course course){
+	this("Bookof"+course.getName(), course.getHp(), course);
     }
+
+    Book(String name, int volume, Course course){
+        super(name, volume);
+        this.course = course;
+    }
+
+    public Course getCourse(){
+	return course;
+    }
+
+    public Boolean sameSubject(Course c){
+	return course.equals(c);
+    }
+     
 
 }
