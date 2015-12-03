@@ -33,17 +33,4 @@ public class Player extends Creature{
     }
 
 
-    public Course getRandCourse(LinkedList<Course> courses){
-        int size = courses.size();
-
-	if(size == 0){
-	    System.out.println(toString());
-	    ErrorControl.error();
-	}
-
-        Random random = new Random();
-        int randomCourse = random.nextInt(size);
-	return courses.get(randomCourse);
-    }
-
 }
