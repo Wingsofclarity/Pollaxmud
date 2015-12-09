@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -15,4 +16,3 @@ public class TestPlayer extends TestCase {
   public void testCreatePlayer() {
       assertEquals("Player does not get correct hp.", 60, this.player.getHp());
   }
-}
