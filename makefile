@@ -10,9 +10,11 @@ comp_Xlint: Pollaxmud.java Room.java Creature.java World.java Player.java Connec
 comp_test: comp
 	javac -cp .:junit-4.12.jar TestPlayer.java TestCourse.java
 
+test: comp_test
+	java -cp .:hamcrest-core-1.3.jar:junit-4.12.jar org.junit.runner.JUnitCore TestPlayer TestCourse
 
 test_player: comp_test
-		java -cp .:hamcrest-core-1.3.jar:junit-4.12.jar org.junit.runner.JUnitCore TestPlayer
+	java -cp .:hamcrest-core-1.3.jar:junit-4.12.jar org.junit.runner.JUnitCore TestPlayer
 
 test_course: comp_test
 	java -cp .:hamcrest-core-1.3.jar:junit-4.12.jar org.junit.runner.JUnitCore TestCourse
