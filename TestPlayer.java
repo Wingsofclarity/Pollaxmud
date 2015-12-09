@@ -7,7 +7,6 @@ public class TestPlayer extends TestCase {
     private Room room;
 
     @Test
-
     public void setUp(){
 	this.room = new Room("Testrum");
 	this.player = new Player("Testspelare",this.room, new LinkedList<Course>() );
