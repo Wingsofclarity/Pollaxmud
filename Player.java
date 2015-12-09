@@ -10,7 +10,7 @@ public class Player extends Creature{
     Player(String name, Room room, LinkedList<Course> completedCourses){
 	super(name, room);
 	hp = 60;
-        completedCourses = completedCourses;
+        this.completedCourses = completedCourses;
     }
 
     public int getHp(){
