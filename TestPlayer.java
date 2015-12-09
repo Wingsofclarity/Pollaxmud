@@ -7,7 +7,7 @@ public class TestPlayer extends TestCase {
     private Player player;
     private Room room;
     private Course course;
-
+    
     public void setUp(){
         this.room = new Room("Testrum");
         this.course = new Course("1", "Testkurs", 50);
