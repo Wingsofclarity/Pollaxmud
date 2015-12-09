@@ -255,7 +255,7 @@ public class Control{
 
     /**
     * Handles yes-or-no questions to player.
-    * @returns True if player answers yes and false if player answers no.
+    * @return True if player answers yes and false if player answers no.
     */
 
     public boolean ynQuestion(){
