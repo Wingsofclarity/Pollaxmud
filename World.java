@@ -33,6 +33,10 @@ public class World{
 	return rooms;
     }
 
+    /**
+     * @param r A room in the world.
+     * @return Unordered list with all rooms the has a connection to/from r.
+     */
     public LinkedList<Room> getConnectedRooms(Room r){
 	LinkedList<Room> e = new LinkedList<Room>();
 	for (int i = 0; i<connections.size(); i++){
@@ -44,6 +48,10 @@ public class World{
 	return e;
     }
 
+    /**
+     * @param r A room in the world.
+     * @return The names of all the creatures in r.
+     */
     public LinkedList<String> getNPCsNameRoom(Room r){
 	LinkedList<String> e = new LinkedList<String>();
 	Object[] array = NPCs.values().toArray();
@@ -59,6 +67,10 @@ public class World{
 	return e;
     } 
 
+    /**
+     * @param r A room in the world.
+     * @return A HashMap with all the NPCs in the world that is in r.
+     */
     public HashMap<String, NPC> getNPCsRoom(Room r){
 	HashMap<String, NPC> e = new HashMap<String, NPC>();
 	Object[] array = NPCs.values().toArray();

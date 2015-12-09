@@ -20,6 +20,10 @@ public class Course{
 	questions = new LinkedList<Question>();
     }
 
+    /**
+     * @param o the object to compare with.
+     * @return returns true if ID of this object and the param object is the equal strings.
+     */
     @Override
     public boolean equals(Object o){
 	assert(o instanceof Course);
@@ -34,7 +38,10 @@ public class Course{
     public int getHp(){
 	return hp;
     }
-    
+
+    /**
+     * @return the index of the answer of which is the right answer to the question asked.
+     */
     public int ask(){
 	System.out.println("---"+name+"---");
 	Question q = getRandQuestion();
@@ -42,6 +49,11 @@ public class Course{
 	return q.right;
     }
 
+    /**
+     * 
+     * @return returns a String with all the information of a random question. 
+     * If no question is avaiable it returns an empty String.
+     */
     public String getQuestion(){
 	if(numQuestions()==0){
 	    System.out.println(toString());
