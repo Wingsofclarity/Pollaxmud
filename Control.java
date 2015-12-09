@@ -13,10 +13,17 @@ public class Control{
 	return player;
     }
 
+    /**
+     * Gets user input.
+     * @return User's input.
+     */
     public String scan(){
 	return System.console().readLine().toLowerCase();
     }
 
+    /**
+     * Directs control flow according to user's choices.
+     */
     public void command(){
 	if (player.getHp()==0){
 	    exit=true;
@@ -77,6 +84,10 @@ public class Control{
 	}
     }
 
+    /**
+     * Interact with non-player controllable characters in the game.
+     * @param name Non-player controllable character to interact with.
+     */
     public void interact(String name){
 	HashMap<String, NPC> NPCs = world.getNPCsRoom(player.getLocation());
 	if (NPCs.containsKey(name)){
@@ -86,11 +97,17 @@ public class Control{
 	    System.out.println(name+" is not present.");
 	}
     }
-
+    /**
+     * Describes the room the player is currently in.
+     */
     public void description(){
 	System.out.println(world.getDescription(player.getLocation()));
     }
 
+    /**
+     * Moves player to room of player's choice if room is available.
+     * @param direction Name of room.
+     */
     public void chooseDirection(String direction){
 	Room r = world.getRooms().get(direction);
 	if (r == null){
@@ -118,6 +135,10 @@ public class Control{
 	}
     }
 
+    /**
+     * Possibility to unlock door if player has at least one key.
+     * @param c The door to unlock.
+     */ 
     public void unlock(Connection c){
 	if (player.getKeys()>0){
 	    System.out.print("Do you wish to unlock this door and move through? You got "+player.getKeys()+" keys to spare. y/n ");
@@ -136,6 +157,10 @@ public class Control{
 	player.printBackpack_2();
     }
 
+    /**
+     * Lets player take book.
+     * @param item Book to pick up.
+     */
     public void take(String item){
 	if (item.equals("key")){
 	    takeKey();
@@ -150,6 +175,9 @@ public class Control{
 	}
     }
 
+    /**
+     * Lets player take key.
+     */
     public void takeKey(){
 	if (player.getLocation().getKeys()>0){
 	    player.addKeys(1);
@@ -160,6 +188,9 @@ public class Control{
 	}
     }
 
+    /**
+     * If player has a key, lets him/her drop it.
+     */
     public void dropKey(){
 	if (player.getKeys()>0){
 	    player.removeKeys(1);
@@ -171,6 +202,9 @@ public class Control{
 
     }
 
+    /**
+     * When backpack is not empty, lets player drop item of choice.
+     */
     public void drop(){ //Fall för tom ryggsäck, ska vara inom intervall etc.
 	if(player.getBackpack().isEmpty() && player.getKeys()==0){
 	    System.out.println("Your backpack is ekande tom, there's nothing to leave behind but your soul.");
@@ -190,6 +224,9 @@ public class Control{
 	}
     }
 
+    /**
+     * Exits game.
+     */
     public void exit(){
 	exit=true;
     }
@@ -199,6 +236,10 @@ public class Control{
 	sphinx.graduate(player);
     }
 
+    /**
+     * Prints player's own status to screen, e.g. hp or backpack.
+     * @param string What information to print.
+     */
     public void check(String string){
 	switch(string){
 	case "hp":
@@ -211,6 +252,11 @@ public class Control{
 	System.out.println("Invalid command.");
 	    }
     }
+
+    /**
+    * Handles yes-or-no questions to player.
+    * @returns True if player answers yes and false if player answers no.
+    */
 
     public boolean ynQuestion(){
 	String input = scan();
