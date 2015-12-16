@@ -3,6 +3,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The World class represents the Pollaxsud world and contains all of its creatures, rooms, items etc. 
+ * @author G. Rosen
+ * @author A. Bergqvist
+ */
 public class World{
     //File map;
     private HashMap<String, NPC> NPCs;

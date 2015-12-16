@@ -1,4 +1,10 @@
 import java.util.*;
+
+/**
+ * The Course class represents a university course.
+ * @author G. Rosen
+ * @author A. Bergqvist
+ */
 public class Course{
     private String name;
     private String id;

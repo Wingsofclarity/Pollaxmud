@@ -10,6 +10,10 @@ comp_Xlint: Pollaxmud.java Room.java Creature.java World.java Player.java Connec
 comp_test: comp
 	javac -cp .:junit-4.12.jar TestPlayer.java TestCourse.java
 
+doc: 
+	cat files.lst | xargs javadoc  -d ./docs
+
+
 test: comp_test
 	java -cp .:hamcrest-core-1.3.jar:junit-4.12.jar org.junit.runner.JUnitCore TestPlayer TestCourse
 

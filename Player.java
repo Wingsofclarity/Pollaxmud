@@ -6,6 +6,7 @@ public class Player extends Creature{
     private LinkedList<Course> completedCourses = new LinkedList<Course>();
     private LinkedList<Item> backpack = new LinkedList<Item>();
     private int keys = 0;
+    private int maxHp = 180;
 
     Player(String name, Room room, LinkedList<Course> completedCourses){
 	super(name, room);
@@ -18,7 +19,7 @@ public class Player extends Creature{
     }
 
     public void setHp(int a){
-	if (a>180) a=180;
+	if (a>maxHp) a=maxHp;
 	if (a<0) a=0;
 	this.hp=a;
     }

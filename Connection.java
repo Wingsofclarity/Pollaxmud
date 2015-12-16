@@ -1,6 +1,12 @@
 import java.util.*;
+
+/**
+ * The Connection class represents the door connecting two rooms.
+ * @author G. Rosen
+ * @author A. Bergqvist
+ */
 public class Connection{
-    public enum Access{
+    public static enum Access{
 	Unlocked("Unlocked"), Locked("Locked"), Closed("Closed");
 
 	private String s;

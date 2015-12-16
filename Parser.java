@@ -228,7 +228,7 @@ public class Parser{
     public static Player parsePlayer (HashMap<String,Room> rooms, HashMap<String,Course> courses){
         LinkedList<Course> completedCourses = new LinkedList<Course>();
 	Random generator = new Random();
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 1; i++){
 	    Object[] values = courses.values().toArray();
 	    Course randomCourse = (Course) values[generator.nextInt(values.length)];
             completedCourses.add(randomCourse);

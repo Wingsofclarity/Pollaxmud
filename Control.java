@@ -1,4 +1,10 @@
 import java.util.*;
+
+/**
+ * The Control class handles the user's choices and thereby directs the control flow throughout the game.
+ * @author G. Rosen
+ * @author A. Bergqvist
+ */
 public class Control{
     protected Player player;
     protected World world;
