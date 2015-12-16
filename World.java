@@ -87,11 +87,21 @@ public class World{
     } 
 
 
+    /**
+     * @param r A room in the world.
+     * @return A string describing the content of r.
+     */
     public String getDescription(Room r){
 	if (r == null) return "You see absolute emptiness. You are nowhere.";
 	LinkedList<Room> connected = getConnectedRooms(r);
 	return "You are in room " + r.getDescription()+" Creatures called "+getNPCsNameRoom(r)+" are present."+" There are "+connected.size()+" doors that leads to "+connected.toString()+" respectively.";
     }
+
+    /**
+     * @param a A room in the world.
+     * @param b A room in the world.
+     * @return The connection between a and b with such exists otherwise null.
+     */
 
     public Connection getConnection(Room a, Room b){
 	return connections.get(connections.indexOf(new Connection(a,b)));
